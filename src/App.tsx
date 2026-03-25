@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl'
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+import AirportMarkerSvg from './assets/airportMarker.svg'
 import './App.css'
 
 function App() {
@@ -14,10 +15,22 @@ function App() {
     mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current!,
+      style: import.meta.env.VITE_MAPBOX_STYLE,
     });
+
+    const handleResize = () => mapRef.current?.resize();
+    window.addEventListener('resize', handleResize);
 
     mapRef.current.on('load', () => {
       const map = mapRef.current!;
+
+      requestAnimationFrame(() => {
+        map.resize();
+      });
+
+      const img = new Image(150, 150);
+      img.onload = () => map.addImage('marker', img);
+      img.src = AirportMarkerSvg;
 
       map.addSource('flightmap', {
         type: 'geojson',
@@ -38,19 +51,22 @@ function App() {
 
       map.addLayer({
         id: 'airports',
-        type: 'circle',
+        type: 'symbol',
         source: 'flightmap',
         filter: ['==', ['get', 'featureType'], 'airport'],
-        paint: {
-          'circle-radius': 4,
-          'circle-color': '#e63946',
-          'circle-stroke-color': '#fff',
-          'circle-stroke-width': 1,
+        layout: {
+          'icon-image': 'marker',
+          'icon-size': 0.3,
+          'icon-anchor': 'bottom',
+          'icon-allow-overlap': true,
+          'text-field': ['get', 'iata'],
+          'text-anchor': 'top',
         },
       });
     });
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       mapRef.current?.remove()
     }
   }, [])
