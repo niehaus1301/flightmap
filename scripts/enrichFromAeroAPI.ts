@@ -73,28 +73,30 @@ async function lookupIcaoCode(iataAirline: string): Promise<string | null> {
 
 /** Build candidate idents to try, in priority order */
 async function buildIdents(flight: FlightWithTrack): Promise<string[]> {
+  const seen = new Set<string>();
   const idents: string[] = [];
+  const add = (id: string) => {
+    if (!seen.has(id)) { seen.add(id); idents.push(id); }
+  };
+
   const iata = flight.flightNumber.replace(/\s+/g, "");
-  // 1. ICAO callsign (highest match rate): look up ICAO code from 2-char IATA airline prefix
-  if (iata.length > 2) {
-    const iataAirline = iata.slice(0, 2);
-    const flightNum = iata.slice(2);
-    const icaoCode = await lookupIcaoCode(iataAirline);
-    if (icaoCode) {
-      const icaoIdent = icaoCode + flightNum;
-      idents.push(icaoIdent);
-      // Only add IATA as fallback if it differs from ICAO
-      if (icaoIdent !== iata) idents.push(iata);
-    } else {
-      // Operator lookup failed — try IATA as-is
-      idents.push(iata);
-    }
-  } else {
-    idents.push(iata);
+  const flightNum = iata.length > 2 ? iata.slice(2) : null;
+
+  // 1. FR24 airline ICAO code + flight number (free, no API call)
+  if (flightNum && flight.airline) {
+    add(flight.airline + flightNum);
   }
-  // 2. Registration (tail number) — last resort
+  // 2. Operator lookup ICAO code + flight number (costs $0.005, cached)
+  if (flightNum) {
+    const iataAirline = iata.slice(0, 2);
+    const icaoCode = await lookupIcaoCode(iataAirline);
+    if (icaoCode) add(icaoCode + flightNum);
+  }
+  // 3. IATA flight number as-is
+  add(iata);
+  // 4. Registration (tail number) — last resort
   if (flight.registration) {
-    idents.push(flight.registration);
+    add(flight.registration);
   }
   return idents;
 }
