@@ -27,14 +27,21 @@ if (fs.existsSync(HISTORY_PATH)) {
   console.log("No flight-history.json found, starting fresh");
 }
 
+const sourceKeys = new Set(flightsFile.flights.map((f) => flightKey(f)));
+
+const beforePruneCount = history.flights.length;
+history.flights = history.flights.filter((f) => sourceKeys.has(flightKey(f)));
+const removedCount = beforePruneCount - history.flights.length;
+if (removedCount > 0) {
+  console.log(`Removed ${removedCount} stale flights from history.`);
+}
+
 const existingKeys = new Set(history.flights.map((f) => flightKey(f)));
 const newFlights = flightsFile.flights.filter(
   (f) => !existingKeys.has(flightKey(f))
 );
 
-if (newFlights.length === 0) {
-  console.log("No new flights to add.");
-} else {
+if (newFlights.length > 0) {
   const enriched: FlightWithTrack[] = newFlights.map((f) => ({
     ...f,
     track: null,
@@ -45,8 +52,14 @@ if (newFlights.length === 0) {
   history.flights.sort((a, b) => b.date.localeCompare(a.date));
 
   fs.mkdirSync(path.dirname(HISTORY_PATH), { recursive: true });
-  fs.writeFileSync(HISTORY_PATH, JSON.stringify(history, null, 2));
-  console.log(
-    `Added ${newFlights.length} new flights. Total: ${history.flights.length}`
-  );
+  console.log(`Added ${newFlights.length} new flights.`);
 }
+
+if (removedCount === 0 && newFlights.length === 0) {
+  console.log("No history changes needed.");
+}
+
+history.flights.sort((a, b) => b.date.localeCompare(a.date));
+fs.mkdirSync(path.dirname(HISTORY_PATH), { recursive: true });
+fs.writeFileSync(HISTORY_PATH, JSON.stringify(history, null, 2));
+console.log(`Synced history. Total: ${history.flights.length}`);
