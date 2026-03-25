@@ -1,0 +1,17 @@
+{
+    "name": "flightmap",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "export-flights": "tsx scripts/exportMyFlightRadar.ts",
+        "sync-history": "tsx scripts/syncHistory.ts",
+        "enrich": "tsx scripts/enrichFromAdsbLol.ts",
+        "generate-geojson": "tsx scripts/generateGeoJSON.ts",
+        "update": "npm run export-flights && npm run sync-history && npm run enrich && npm run generate-geojson"
+    },
+    "devDependencies": {
+        "@types/node": "^25.5.0",
+        "tsx": "^4.0.0",
+        "typescript": "^5.0.0"
+    }
+}
