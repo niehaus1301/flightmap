@@ -48,10 +48,13 @@ function loadAirports(): Map<string, Airport> {
   const lines = csv.split("\n");
   const airports = new Map<string, Airport>();
 
+  const parsed: ReturnType<typeof parseCSVLine>[] = [];
+  // First pass: load all airports with an IATA code
   for (let i = 1; i < lines.length; i++) {
     const line = lines[i].trim();
     if (!line) continue;
     const fields = parseCSVLine(line);
+    parsed.push(fields);
     const iata = fields[13]?.trim();
     if (!iata) continue;
     const lat = parseFloat(fields[4]);
@@ -59,6 +62,26 @@ function loadAirports(): Map<string, Airport> {
     if (isNaN(lat) || isNaN(lng)) continue;
     airports.set(iata, {
       iata,
+      name: fields[3] ?? "",
+      lat,
+      lng,
+      country: fields[8] ?? "",
+    });
+  }
+
+  // Second pass: recover IATA codes for closed airports from keywords
+  for (const fields of parsed) {
+    if (fields[13]?.trim() || fields[2]?.trim() !== "closed") continue;
+    const keywords = fields[18]?.trim();
+    if (!keywords) continue;
+    const codes = keywords.split(",").map((k) => k.trim()).filter((k) => /^[A-Z]{3}$/.test(k));
+    const match = codes.find((c) => !airports.has(c));
+    if (!match) continue;
+    const lat = parseFloat(fields[4]);
+    const lng = parseFloat(fields[5]);
+    if (isNaN(lat) || isNaN(lng)) continue;
+    airports.set(match, {
+      iata: match,
       name: fields[3] ?? "",
       lat,
       lng,
@@ -130,17 +153,21 @@ function main() {
   console.log(`Loaded ${history.flights.length} flights from history`);
 
   // Count flights per airport and collect used airports
+  // Only count an airport if both endpoints of the flight are known,
+  // so we don't emit orphan dots with no connecting route
   const airportFlightCount = new Map<string, number>();
   const missingAirports = new Set<string>();
 
   for (const flight of history.flights) {
-    for (const code of [flight.from, flight.to]) {
-      if (!code) continue;
-      if (airports.has(code)) {
-        airportFlightCount.set(code, (airportFlightCount.get(code) ?? 0) + 1);
-      } else {
-        missingAirports.add(code);
-      }
+    const fromKnown = flight.from ? airports.has(flight.from) : false;
+    const toKnown = flight.to ? airports.has(flight.to) : false;
+
+    if (!fromKnown && flight.from) missingAirports.add(flight.from);
+    if (!toKnown && flight.to) missingAirports.add(flight.to);
+
+    if (fromKnown && toKnown) {
+      airportFlightCount.set(flight.from, (airportFlightCount.get(flight.from) ?? 0) + 1);
+      airportFlightCount.set(flight.to, (airportFlightCount.get(flight.to) ?? 0) + 1);
     }
   }
 
