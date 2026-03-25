@@ -31,6 +31,63 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+type FlightResult = { flights?: Array<Record<string, unknown>> };
+
+/** Build candidate idents to try, in priority order */
+function buildIdents(flight: FlightWithTrack): string[] {
+  const idents: string[] = [];
+  // 1. IATA flight number as-is (e.g. "VJ501")
+  const iata = flight.flightNumber.replace(/\s+/g, "");
+  idents.push(iata);
+  // 2. ICAO callsign: ICAO airline code + numeric flight suffix
+  //    IATA airline codes are always 2 chars, so slice(2) gives the flight number
+  if (flight.airline && iata.length > 2) {
+    const icao = flight.airline + iata.slice(2);
+    if (icao !== iata) idents.push(icao);
+  }
+  // 3. Registration (tail number) — works as an ident in AeroAPI
+  if (flight.registration) {
+    idents.push(flight.registration);
+  }
+  return idents;
+}
+
+/** Try each ident until we find a flight matching the origin/destination */
+async function findFlight(
+  flight: FlightWithTrack,
+  prefix: string,
+  startStr: string,
+  endStr: string
+): Promise<Record<string, unknown> | null> {
+  const idents = buildIdents(flight);
+  for (const ident of idents) {
+    const data = (await aeroGet(
+      `${prefix}/flights/${encodeURIComponent(ident)}?start=${startStr}&end=${endStr}`
+    )) as FlightResult;
+    await sleep(REQUEST_DELAY_MS);
+
+    if (!data.flights?.length) {
+      console.log(`  No results for ident "${ident}"`);
+      continue;
+    }
+
+    const matched = data.flights.find((f) => {
+      const origin = f.origin as { code_iata?: string } | undefined;
+      const dest = f.destination as { code_iata?: string } | undefined;
+      return origin?.code_iata === flight.from && dest?.code_iata === flight.to;
+    });
+
+    if (matched) {
+      console.log(`  Matched via ident "${ident}"`);
+      return matched;
+    }
+    console.log(
+      `  Found ${data.flights.length} flights for "${ident}" but none matched ${flight.from} → ${flight.to}`
+    );
+  }
+  return null;
+}
+
 // ── Main ───────────────────────────────────────────────────────────────────────
 
 const history: FlightHistory = JSON.parse(
@@ -69,30 +126,11 @@ for (const flight of toProcess) {
       `\nLooking up ${ident} on ${flight.date} (${flight.from} → ${flight.to})${isHistorical ? " [history]" : ""}`
     );
 
-    // Step 1: Find the flight by ident and date range
-    const data = (await aeroGet(
-      `${prefix}/flights/${encodeURIComponent(ident)}?start=${startStr}&end=${endStr}`
-    )) as { flights?: Array<Record<string, unknown>> };
-    await sleep(REQUEST_DELAY_MS);
-
-    if (!data.flights?.length) {
-      console.log(`  No flights found for ${ident}`);
-      continue;
-    }
-
-    // Step 2: Match by origin/destination IATA codes
-    const matched = data.flights.find((f) => {
-      const origin = f.origin as { code_iata?: string } | undefined;
-      const dest = f.destination as { code_iata?: string } | undefined;
-      return (
-        origin?.code_iata === flight.from && dest?.code_iata === flight.to
-      );
-    });
+    // Step 1: Find the flight by trying IATA, ICAO callsign, and registration
+    const matched = await findFlight(flight, prefix, startStr, endStr);
 
     if (!matched) {
-      console.log(
-        `  No airport match for ${flight.from} → ${flight.to} among ${data.flights.length} results`
-      );
+      console.log(`  Could not find flight via any ident`);
       continue;
     }
 
