@@ -71,8 +71,8 @@ async function lookupIcaoCode(iataAirline: string): Promise<string | null> {
   }
 }
 
-/** Build candidate idents to try, in priority order */
-async function buildIdents(flight: FlightWithTrack): Promise<string[]> {
+/** Build candidate idents to try, in priority order (cheapest first) */
+function buildStaticIdents(flight: FlightWithTrack): string[] {
   const seen = new Set<string>();
   const idents: string[] = [];
   const add = (id: string) => {
@@ -86,54 +86,80 @@ async function buildIdents(flight: FlightWithTrack): Promise<string[]> {
   if (flightNum && flight.airline) {
     add(flight.airline + flightNum);
   }
-  // 2. Operator lookup ICAO code + flight number (costs $0.005, cached)
-  if (flightNum) {
-    const iataAirline = iata.slice(0, 2);
-    const icaoCode = await lookupIcaoCode(iataAirline);
-    if (icaoCode) add(icaoCode + flightNum);
-  }
-  // 3. IATA flight number as-is
+  // 2. IATA flight number as-is (free)
   add(iata);
-  // 4. Registration (tail number) — last resort
+  // 3. Registration / tail number (free, if available)
   if (flight.registration) {
     add(flight.registration);
   }
   return idents;
 }
 
-/** Try each ident until we find a flight matching the origin/destination */
+/** Try each ident until we find a flight matching the origin/destination.
+ *  Tries free static idents first, then falls back to operator lookup. */
 async function findFlight(
   flight: FlightWithTrack,
   prefix: string,
   startStr: string,
   endStr: string
 ): Promise<Record<string, unknown> | null> {
-  const idents = await buildIdents(flight);
-  for (const ident of idents) {
-    const data = (await aeroGet(
-      `${prefix}/flights/${encodeURIComponent(ident)}?start=${startStr}&end=${endStr}`
-    )) as FlightResult;
-    await sleep(REQUEST_DELAY_MS);
+  const staticIdents = buildStaticIdents(flight);
 
-    if (!data.flights?.length) {
-      console.log(`  No results for ident "${ident}"`);
-      continue;
-    }
-
-    const matched = data.flights.find((f) => {
-      const origin = f.origin as { code_iata?: string } | undefined;
-      const dest = f.destination as { code_iata?: string } | undefined;
-      return origin?.code_iata === flight.from && dest?.code_iata === flight.to;
-    });
-
-    if (matched) {
-      console.log(`  Matched via ident "${ident}"`);
-      return matched;
-    }
-    console.log(
-      `  Found ${data.flights.length} flights for "${ident}" but none matched ${flight.from} → ${flight.to}`
-    );
+  // Phase 1: try all free idents
+  for (const ident of staticIdents) {
+    const result = await tryIdent(ident, flight, prefix, startStr, endStr);
+    if (result) return result;
   }
+
+  // Phase 2: operator lookup fallback (costs $0.005, cached)
+  const iata = flight.flightNumber.replace(/\s+/g, "");
+  if (iata.length > 2) {
+    const iataAirline = iata.slice(0, 2);
+    const flightNum = iata.slice(2);
+    const icaoCode = await lookupIcaoCode(iataAirline);
+    if (icaoCode) {
+      const operatorIdent = icaoCode + flightNum;
+      if (!staticIdents.includes(operatorIdent)) {
+        saveIcaoCache();
+        const result = await tryIdent(operatorIdent, flight, prefix, startStr, endStr);
+        if (result) return result;
+      }
+    }
+  }
+
+  return null;
+}
+
+async function tryIdent(
+  ident: string,
+  flight: FlightWithTrack,
+  prefix: string,
+  startStr: string,
+  endStr: string
+): Promise<Record<string, unknown> | null> {
+  const data = (await aeroGet(
+    `${prefix}/flights/${encodeURIComponent(ident)}?start=${startStr}&end=${endStr}`
+  )) as FlightResult;
+  await sleep(REQUEST_DELAY_MS);
+
+  if (!data.flights?.length) {
+    console.log(`  No results for ident "${ident}"`);
+    return null;
+  }
+
+  const matched = data.flights.find((f) => {
+    const origin = f.origin as { code_iata?: string } | undefined;
+    const dest = f.destination as { code_iata?: string } | undefined;
+    return origin?.code_iata === flight.from && dest?.code_iata === flight.to;
+  });
+
+  if (matched) {
+    console.log(`  Matched via ident "${ident}"`);
+    return matched;
+  }
+  console.log(
+    `  Found ${data.flights.length} flights for "${ident}" but none matched ${flight.from} → ${flight.to}`
+  );
   return null;
 }
 
@@ -152,21 +178,6 @@ console.log(
 
 const toProcess = unenriched.slice(0, MAX_FLIGHTS);
 console.log(`Processing up to ${toProcess.length} flights`);
-
-// Pre-resolve all unique airline IATA→ICAO codes to minimize operator lookups
-const airlineCodes = [
-  ...new Set(
-    toProcess
-      .map((f) => f.flightNumber.replace(/\s+/g, ""))
-      .filter((fn) => fn.length > 2)
-      .map((fn) => fn.slice(0, 2))
-  ),
-];
-console.log(`Pre-resolving ${airlineCodes.length} airline codes...`);
-for (const code of airlineCodes) {
-  await lookupIcaoCode(code);
-}
-saveIcaoCache();
 
 let enriched = 0;
 
