@@ -12,9 +12,8 @@ export interface Flight {
 }
 
 export interface FlightWithTrack extends Flight {
-  icao24: string | null;
   track: [number, number][] | null;
-  trackSource: "opensky" | "adsblol" | null;
+  trackSource: "aeroapi" | null;
 }
 
 export interface Airport {

@@ -11,6 +11,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    environment: main
     timeout-minutes: 30
 
     steps:
@@ -29,10 +30,11 @@ jobs:
       - name: Sync new flights into history
         run: npm run sync-history
 
-      - name: Enrich flights with adsb.lol track data
+      - name: Enrich flights with AeroAPI track data
         run: npm run enrich
         env:
-          MAX_DATES: "10"
+          AEROAPI_KEY: ${{ secrets.AEROAPI_KEY }}
+          MAX_FLIGHTS: "10"
 
       - name: Generate GeoJSON
         run: npm run generate-geojson

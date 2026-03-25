@@ -37,7 +37,6 @@ if (newFlights.length === 0) {
 } else {
   const enriched: FlightWithTrack[] = newFlights.map((f) => ({
     ...f,
-    icao24: null,
     track: null,
     trackSource: null,
   }));

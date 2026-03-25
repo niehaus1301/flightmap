@@ -5,7 +5,7 @@
     "scripts": {
         "export-flights": "tsx scripts/exportMyFlightRadar.ts",
         "sync-history": "tsx scripts/syncHistory.ts",
-        "enrich": "tsx scripts/enrichFromAdsbLol.ts",
+        "enrich": "tsx scripts/enrichFromAeroAPI.ts",
         "generate-geojson": "tsx scripts/generateGeoJSON.ts",
         "update": "npm run export-flights && npm run sync-history && npm run enrich && npm run generate-geojson"
     },
