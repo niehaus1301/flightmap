@@ -80,8 +80,10 @@ function buildStaticIdents(flight: FlightWithTrack): string[] {
   };
 
   const iata = flight.flightNumber.replace(/\s+/g, "");
-  // Extract numeric flight number: strip leading 2-char IATA prefix (can be alphanumeric like W6, 6E, 5W)
-  const numMatch = iata.match(/^[A-Z0-9]{2}(\d+)$/i) ?? iata.match(/^(\d+)$/);
+  // Extract numeric flight number: strip 2-char IATA prefix (must have ≥1 letter, e.g. W6, EW, 6E).
+  // Pure-number strings like "3729" don't match the first pattern and fall through to the second.
+  const numMatch =
+    iata.match(/^(?:[A-Z][A-Z0-9]|[A-Z0-9][A-Z])(\d+)$/i) ?? iata.match(/^(\d+)$/);
   const flightNum = numMatch ? numMatch[1] : null;
 
   // 1. FR24 airline ICAO code + flight number (free, no API call)
@@ -119,7 +121,8 @@ async function findFlight(
   // Phase 2: operator lookup fallback (costs $0.005, cached)
   if (candidates.length === 0) {
     const iata = flight.flightNumber.replace(/\s+/g, "");
-    const iataMatch = iata.match(/^([A-Z0-9]{2})(\d+)$/i);
+    // Same constraint as buildStaticIdents: prefix must have at least one letter
+    const iataMatch = iata.match(/^([A-Z][A-Z0-9]|[A-Z0-9][A-Z])(\d+)$/i);
     if (iataMatch) {
       const iataAirline = iataMatch[1];
       const flightNum = iataMatch[2];
@@ -136,6 +139,20 @@ async function findFlight(
   }
 
   return candidates;
+}
+
+// AeroAPI returns code_iata: null for closed airports. Map their ICAO code to IATA as a fallback.
+const CLOSED_ICAO_TO_IATA: Record<string, string> = {
+  EDDT: "TXL", // Berlin Tegel (closed 2020)
+  EDDB: "SXF", // Berlin Schönefeld (rebranded to BER)
+};
+
+function resolveIata(airport: Record<string, unknown> | undefined): string | undefined {
+  if (!airport) return undefined;
+  if (typeof airport.code_iata === "string") return airport.code_iata;
+  if (typeof airport.code === "string" && CLOSED_ICAO_TO_IATA[airport.code])
+    return CLOSED_ICAO_TO_IATA[airport.code];
+  return undefined;
 }
 
 async function tryIdent(
@@ -156,9 +173,9 @@ async function tryIdent(
   }
 
   const matches = data.flights.filter((f) => {
-    const origin = f.origin as { code_iata?: string } | undefined;
-    const dest = f.destination as { code_iata?: string } | undefined;
-    return origin?.code_iata === flight.from && dest?.code_iata === flight.to;
+    const origin = f.origin as Record<string, unknown> | undefined;
+    const dest = f.destination as Record<string, unknown> | undefined;
+    return resolveIata(origin) === flight.from && resolveIata(dest) === flight.to;
   });
 
   if (matches.length > 0) {
