@@ -6,6 +6,7 @@ const AEROAPI_BASE = "https://aeroapi.flightaware.com/aeroapi";
 const AEROAPI_KEY = process.env.AEROAPI_KEY;
 const ROOT = path.join(new URL(import.meta.url).pathname, "../..");
 const HISTORY_PATH = path.join(ROOT, "data/flight-history.json");
+const ICAO_CACHE_PATH = path.join(ROOT, "data/airline-icao-cache.json");
 const MAX_FLIGHTS = parseInt(process.env.MAX_FLIGHTS ?? "50", 10);
 const REQUEST_DELAY_MS = 10_000; // ~6 req/min, well under the 10/min Personal tier limit
 
@@ -33,8 +34,25 @@ function sleep(ms: number): Promise<void> {
 
 type FlightResult = { flights?: Array<Record<string, unknown>> };
 
-// Cache IATA → ICAO airline code lookups
+// Cache IATA → ICAO airline code lookups (persisted to disk)
 const icaoCache = new Map<string, string | null>();
+
+function loadIcaoCache(): void {
+  if (fs.existsSync(ICAO_CACHE_PATH)) {
+    const data = JSON.parse(fs.readFileSync(ICAO_CACHE_PATH, "utf-8"));
+    for (const [k, v] of Object.entries(data)) {
+      icaoCache.set(k, v as string | null);
+    }
+    console.log(`Loaded ${icaoCache.size} cached airline ICAO codes`);
+  }
+}
+
+function saveIcaoCache(): void {
+  const obj: Record<string, string | null> = {};
+  for (const [k, v] of icaoCache) obj[k] = v;
+  fs.mkdirSync(path.dirname(ICAO_CACHE_PATH), { recursive: true });
+  fs.writeFileSync(ICAO_CACHE_PATH, JSON.stringify(obj, null, 2));
+}
 
 async function lookupIcaoCode(iataAirline: string): Promise<string | null> {
   if (icaoCache.has(iataAirline)) return icaoCache.get(iataAirline)!;
@@ -57,19 +75,24 @@ async function lookupIcaoCode(iataAirline: string): Promise<string | null> {
 async function buildIdents(flight: FlightWithTrack): Promise<string[]> {
   const idents: string[] = [];
   const iata = flight.flightNumber.replace(/\s+/g, "");
-  // 1. IATA flight number as-is (e.g. "VJ501")
-  idents.push(iata);
-  // 2. ICAO callsign via operator lookup: IATA airline is always 2 chars
+  // 1. ICAO callsign (highest match rate): look up ICAO code from 2-char IATA airline prefix
   if (iata.length > 2) {
     const iataAirline = iata.slice(0, 2);
     const flightNum = iata.slice(2);
     const icaoCode = await lookupIcaoCode(iataAirline);
     if (icaoCode) {
       const icaoIdent = icaoCode + flightNum;
-      if (icaoIdent !== iata) idents.push(icaoIdent);
+      idents.push(icaoIdent);
+      // Only add IATA as fallback if it differs from ICAO
+      if (icaoIdent !== iata) idents.push(iata);
+    } else {
+      // Operator lookup failed — try IATA as-is
+      idents.push(iata);
     }
+  } else {
+    idents.push(iata);
   }
-  // 3. Registration (tail number) — works as an ident in AeroAPI
+  // 2. Registration (tail number) — last resort
   if (flight.registration) {
     idents.push(flight.registration);
   }
@@ -114,6 +137,8 @@ async function findFlight(
 
 // ── Main ───────────────────────────────────────────────────────────────────────
 
+loadIcaoCache();
+
 const history: FlightHistory = JSON.parse(
   fs.readFileSync(HISTORY_PATH, "utf-8")
 );
@@ -125,6 +150,21 @@ console.log(
 
 const toProcess = unenriched.slice(0, MAX_FLIGHTS);
 console.log(`Processing up to ${toProcess.length} flights`);
+
+// Pre-resolve all unique airline IATA→ICAO codes to minimize operator lookups
+const airlineCodes = [
+  ...new Set(
+    toProcess
+      .map((f) => f.flightNumber.replace(/\s+/g, ""))
+      .filter((fn) => fn.length > 2)
+      .map((fn) => fn.slice(0, 2))
+  ),
+];
+console.log(`Pre-resolving ${airlineCodes.length} airline codes...`);
+for (const code of airlineCodes) {
+  await lookupIcaoCode(code);
+}
+saveIcaoCache();
 
 let enriched = 0;
 
@@ -189,4 +229,5 @@ for (const flight of toProcess) {
 
 // Save updated history
 fs.writeFileSync(HISTORY_PATH, JSON.stringify(history, null, 2));
+saveIcaoCache();
 console.log(`\nDone. Enriched ${enriched}/${toProcess.length} flights.`);
