@@ -9,7 +9,7 @@ import {
 } from "./types.js";
 
 const ROOT = path.join(new URL(import.meta.url).pathname, "../..");
-const FLIGHTS_PATH = path.join(ROOT, "src/assets/flights.json");
+const FLIGHTS_PATH = path.join(ROOT, "generated/flights.json");
 const HISTORY_PATH = path.join(ROOT, "data/flight-history.json");
 
 const flightsFile: FlightsFile = JSON.parse(

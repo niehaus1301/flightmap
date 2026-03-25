@@ -6,7 +6,7 @@ const MY_FLIGHTRADAR_URL =
 
 const OUTPUT_FILE_PATH = path.join(
   new URL(import.meta.url).pathname,
-  "../../src/assets/flights.json"
+  "../../generated/flights.json"
 );
 
 interface Flight {
@@ -69,4 +69,5 @@ const flights: Flight[] = Object.keys(flightsRaw).map((key) => {
 
 console.log(`Fetched ${flights.length} flights`);
 console.log("Writing to " + OUTPUT_FILE_PATH);
+fs.mkdirSync(path.dirname(OUTPUT_FILE_PATH), { recursive: true });
 fs.writeFileSync(OUTPUT_FILE_PATH, JSON.stringify({ flights }, null, 2));

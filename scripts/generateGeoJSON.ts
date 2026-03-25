@@ -10,7 +10,7 @@ import {
 const ROOT = path.join(new URL(import.meta.url).pathname, "../..");
 const HISTORY_PATH = path.join(ROOT, "data/flight-history.json");
 const AIRPORTS_CSV_PATH = path.join(ROOT, "data/airports.csv");
-const GEOJSON_PATH = path.join(ROOT, "src/assets/flightmap.geojson");
+const GEOJSON_PATH = path.join(ROOT, "generated/flightmap.geojson");
 
 // ── CSV Parsing ────────────────────────────────────────────────────────────────
 function parseCSVLine(line: string): string[] {
