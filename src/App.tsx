@@ -34,7 +34,7 @@ function App() {
 
       map.addSource('flightmap', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/niehaus1301/flightmap/main/generated/flightmap.geojson',
+        data: `${import.meta.env.BASE_URL}flightmap.geojson`,
       });
 
       map.addLayer({
