@@ -13,7 +13,7 @@ export interface Flight {
 
 export interface FlightWithTrack extends Flight {
   track: [number, number][] | null;
-  trackSource: "aeroapi" | null;
+  trackSource: "aeroapi" | "none" | null;
 }
 
 export interface Airport {

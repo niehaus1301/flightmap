@@ -171,7 +171,7 @@ const history: FlightHistory = JSON.parse(
   fs.readFileSync(HISTORY_PATH, "utf-8")
 );
 
-const unenriched = history.flights.filter((f) => f.track === null);
+const unenriched = history.flights.filter((f) => f.trackSource === null);
 console.log(
   `Found ${unenriched.length} unenriched flights out of ${history.flights.length} total`
 );
@@ -208,6 +208,7 @@ for (const flight of toProcess) {
 
     if (!matched) {
       console.log(`  Could not find flight via any ident`);
+      flight.trackSource = "none";
       continue;
     }
 
@@ -221,6 +222,7 @@ for (const flight of toProcess) {
 
     if (!trackData.positions?.length) {
       console.log(`  No track positions for ${faFlightId}`);
+      flight.trackSource = "none";
       continue;
     }
 

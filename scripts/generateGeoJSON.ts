@@ -70,44 +70,6 @@ function loadAirports(): Map<string, Airport> {
   return airports;
 }
 
-// ── Great Circle Arc ───────────────────────────────────────────────────────────
-function greatCircleArc(
-  from: [number, number],
-  to: [number, number],
-  steps = 50
-): [number, number][] {
-  const toRad = (d: number) => (d * Math.PI) / 180;
-  const toDeg = (r: number) => (r * 180) / Math.PI;
-
-  const lat1 = toRad(from[1]),
-    lng1 = toRad(from[0]);
-  const lat2 = toRad(to[1]),
-    lng2 = toRad(to[0]);
-
-  const d =
-    2 *
-    Math.asin(
-      Math.sqrt(
-        Math.sin((lat2 - lat1) / 2) ** 2 +
-          Math.cos(lat1) * Math.cos(lat2) * Math.sin((lng2 - lng1) / 2) ** 2
-      )
-    );
-
-  if (d < 1e-10) return [from, to];
-
-  const points: [number, number][] = [];
-  for (let i = 0; i <= steps; i++) {
-    const f = i / steps;
-    const A = Math.sin((1 - f) * d) / Math.sin(d);
-    const B = Math.sin(f * d) / Math.sin(d);
-    const x = A * Math.cos(lat1) * Math.cos(lng1) + B * Math.cos(lat2) * Math.cos(lng2);
-    const y = A * Math.cos(lat1) * Math.sin(lng1) + B * Math.cos(lat2) * Math.sin(lng2);
-    const z = A * Math.sin(lat1) + B * Math.sin(lat2);
-    points.push([toDeg(Math.atan2(y, x)), toDeg(Math.atan2(z, Math.sqrt(x * x + y * y)))]);
-  }
-  return points;
-}
-
 // ── GeoJSON helpers ────────────────────────────────────────────────────────────
 function airportFeature(airport: Airport, flightCount: number) {
   return {
@@ -209,13 +171,19 @@ function main() {
       let coordinates: [number, number][];
 
       if (flight.track && flight.track.length > 0) {
-        coordinates = flight.track;
+        // Anchor track to airport coordinates so lines connect to airport dots
+        coordinates = [
+          [fromAirport.lng, fromAirport.lat],
+          ...flight.track,
+          [toAirport.lng, toAirport.lat],
+        ];
         trackedCount++;
       } else {
-        coordinates = greatCircleArc(
+        // Just two endpoints — Mapbox client handles geodesic rendering
+        coordinates = [
           [fromAirport.lng, fromAirport.lat],
-          [toAirport.lng, toAirport.lat]
-        );
+          [toAirport.lng, toAirport.lat],
+        ];
         greatCircleCount++;
       }
 
