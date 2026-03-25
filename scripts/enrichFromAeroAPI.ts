@@ -8,7 +8,7 @@ const ROOT = path.join(new URL(import.meta.url).pathname, "../..");
 const HISTORY_PATH = path.join(ROOT, "data/flight-history.json");
 const ICAO_CACHE_PATH = path.join(ROOT, "data/airline-icao-cache.json");
 const MAX_FLIGHTS = parseInt(process.env.MAX_FLIGHTS ?? "50", 10);
-const REQUEST_DELAY_MS = 10_000; // ~6 req/min, well under the 10/min Personal tier limit
+const REQUEST_DELAY_MS = 1_000; // ~6 req/min, well under the 10/min Personal tier limit
 
 if (!AEROAPI_KEY) {
   console.error("AEROAPI_KEY environment variable is required");
