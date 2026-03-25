@@ -33,17 +33,41 @@ function sleep(ms: number): Promise<void> {
 
 type FlightResult = { flights?: Array<Record<string, unknown>> };
 
+// Cache IATA → ICAO airline code lookups
+const icaoCache = new Map<string, string | null>();
+
+async function lookupIcaoCode(iataAirline: string): Promise<string | null> {
+  if (icaoCache.has(iataAirline)) return icaoCache.get(iataAirline)!;
+  try {
+    const op = (await aeroGet(`/operators/${encodeURIComponent(iataAirline)}`)) as {
+      icao?: string;
+    };
+    await sleep(REQUEST_DELAY_MS);
+    const icao = op.icao ?? null;
+    icaoCache.set(iataAirline, icao);
+    if (icao) console.log(`  Resolved airline ${iataAirline} → ICAO ${icao}`);
+    return icao;
+  } catch {
+    icaoCache.set(iataAirline, null);
+    return null;
+  }
+}
+
 /** Build candidate idents to try, in priority order */
-function buildIdents(flight: FlightWithTrack): string[] {
+async function buildIdents(flight: FlightWithTrack): Promise<string[]> {
   const idents: string[] = [];
-  // 1. IATA flight number as-is (e.g. "VJ501")
   const iata = flight.flightNumber.replace(/\s+/g, "");
+  // 1. IATA flight number as-is (e.g. "VJ501")
   idents.push(iata);
-  // 2. ICAO callsign: ICAO airline code + numeric flight suffix
-  //    IATA airline codes are always 2 chars, so slice(2) gives the flight number
-  if (flight.airline && iata.length > 2) {
-    const icao = flight.airline + iata.slice(2);
-    if (icao !== iata) idents.push(icao);
+  // 2. ICAO callsign via operator lookup: IATA airline is always 2 chars
+  if (iata.length > 2) {
+    const iataAirline = iata.slice(0, 2);
+    const flightNum = iata.slice(2);
+    const icaoCode = await lookupIcaoCode(iataAirline);
+    if (icaoCode) {
+      const icaoIdent = icaoCode + flightNum;
+      if (icaoIdent !== iata) idents.push(icaoIdent);
+    }
   }
   // 3. Registration (tail number) — works as an ident in AeroAPI
   if (flight.registration) {
@@ -59,7 +83,7 @@ async function findFlight(
   startStr: string,
   endStr: string
 ): Promise<Record<string, unknown> | null> {
-  const idents = buildIdents(flight);
+  const idents = await buildIdents(flight);
   for (const ident of idents) {
     const data = (await aeroGet(
       `${prefix}/flights/${encodeURIComponent(ident)}?start=${startStr}&end=${endStr}`
