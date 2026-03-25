@@ -32,7 +32,7 @@ jobs:
       - name: Enrich flights with adsb.lol track data
         run: npm run enrich
         env:
-          MAX_DATES: "3"
+          MAX_DATES: "10"
 
       - name: Generate GeoJSON
         run: npm run generate-geojson
