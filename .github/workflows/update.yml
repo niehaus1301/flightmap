@@ -34,7 +34,7 @@ jobs:
         run: npm run enrich
         env:
           AEROAPI_KEY: ${{ secrets.AEROAPI_KEY }}
-          MAX_FLIGHTS: "25"
+          MAX_FLIGHTS: "50"
 
       - name: Generate GeoJSON
         run: npm run generate-geojson
