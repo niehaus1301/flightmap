@@ -656,7 +656,7 @@
       "distance": 0,
       "departureTime": "16:44",
       "arrivalTime": "17:16",
-      "airline": null,
+      "airline": "",
       "aircraft": "P28A",
       "registration": "D-EOCM"
     },
@@ -2084,7 +2084,7 @@
       "distance": 91,
       "departureTime": "09:00",
       "arrivalTime": "10:00",
-      "airline": null,
+      "airline": "",
       "aircraft": null,
       "registration": null
     },

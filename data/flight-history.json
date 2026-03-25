@@ -56,7 +56,7 @@
       "airline": "PAL",
       "aircraft": "B77W",
       "registration": "RP-C7775",
-      "icao24": null,
+      "icao24": "7580ef",
       "track": null,
       "trackSource": null
     },
@@ -71,9 +71,786 @@
       "airline": "RIT",
       "aircraft": "A320",
       "registration": "RP-C8950",
-      "icao24": null,
-      "track": null,
-      "trackSource": null
+      "icao24": "7585a2",
+      "track": [
+        [
+          123.58879,
+          10.059036
+        ],
+        [
+          123.584921,
+          10.067108
+        ],
+        [
+          123.584589,
+          10.067806
+        ],
+        [
+          123.575071,
+          10.087451
+        ],
+        [
+          123.564558,
+          10.109144
+        ],
+        [
+          123.556319,
+          10.126136
+        ],
+        [
+          123.549547,
+          10.140195
+        ],
+        [
+          123.545427,
+          10.148667
+        ],
+        [
+          123.54358,
+          10.152531
+        ],
+        [
+          123.540887,
+          10.158096
+        ],
+        [
+          123.531836,
+          10.176878
+        ],
+        [
+          123.522839,
+          10.195592
+        ],
+        [
+          123.514353,
+          10.21312
+        ],
+        [
+          123.50588,
+          10.23056
+        ],
+        [
+          123.500247,
+          10.242188
+        ],
+        [
+          123.492101,
+          10.259033
+        ],
+        [
+          123.483345,
+          10.277151
+        ],
+        [
+          123.474504,
+          10.295425
+        ],
+        [
+          123.46606,
+          10.312857
+        ],
+        [
+          123.463704,
+          10.317719
+        ],
+        [
+          123.460188,
+          10.325054
+        ],
+        [
+          123.448574,
+          10.34903
+        ],
+        [
+          123.436842,
+          10.373328
+        ],
+        [
+          123.432486,
+          10.382266
+        ],
+        [
+          123.421689,
+          10.404518
+        ],
+        [
+          123.412217,
+          10.424652
+        ],
+        [
+          123.410401,
+          10.428818
+        ],
+        [
+          123.403789,
+          10.444926
+        ],
+        [
+          123.396715,
+          10.463104
+        ],
+        [
+          123.38721,
+          10.48794
+        ],
+        [
+          123.384136,
+          10.495926
+        ],
+        [
+          123.374287,
+          10.521378
+        ],
+        [
+          123.370634,
+          10.530721
+        ],
+        [
+          123.368462,
+          10.536209
+        ],
+        [
+          123.358973,
+          10.560468
+        ],
+        [
+          123.353592,
+          10.57402
+        ],
+        [
+          123.339765,
+          10.608353
+        ],
+        [
+          123.329628,
+          10.633276
+        ],
+        [
+          123.319317,
+          10.658461
+        ],
+        [
+          123.313246,
+          10.673264
+        ],
+        [
+          123.308282,
+          10.685321
+        ],
+        [
+          123.296091,
+          10.715208
+        ],
+        [
+          123.285401,
+          10.74147
+        ],
+        [
+          123.275362,
+          10.766235
+        ],
+        [
+          123.270106,
+          10.77919
+        ],
+        [
+          123.259374,
+          10.805286
+        ],
+        [
+          123.253061,
+          10.818833
+        ],
+        [
+          123.246942,
+          10.830471
+        ],
+        [
+          123.239941,
+          10.842453
+        ],
+        [
+          123.237257,
+          10.846718
+        ],
+        [
+          123.23504,
+          10.850163
+        ],
+        [
+          123.231701,
+          10.855453
+        ],
+        [
+          123.217968,
+          10.876923
+        ],
+        [
+          123.199527,
+          10.905793
+        ],
+        [
+          123.192823,
+          10.91629
+        ],
+        [
+          123.186856,
+          10.925629
+        ],
+        [
+          123.172399,
+          10.948295
+        ],
+        [
+          123.167346,
+          10.956161
+        ],
+        [
+          123.162231,
+          10.964169
+        ],
+        [
+          123.156305,
+          10.973387
+        ],
+        [
+          123.135151,
+          11.006392
+        ],
+        [
+          123.116155,
+          11.03595
+        ],
+        [
+          123.095414,
+          11.068405
+        ],
+        [
+          123.089684,
+          11.077286
+        ],
+        [
+          123.072305,
+          11.104431
+        ],
+        [
+          123.061379,
+          11.121469
+        ],
+        [
+          123.056705,
+          11.128731
+        ],
+        [
+          123.049573,
+          11.139857
+        ],
+        [
+          123.044981,
+          11.147003
+        ],
+        [
+          123.027412,
+          11.174377
+        ],
+        [
+          123.008375,
+          11.204053
+        ],
+        [
+          123.003074,
+          11.212246
+        ],
+        [
+          122.987173,
+          11.236965
+        ],
+        [
+          122.970212,
+          11.263314
+        ],
+        [
+          122.964335,
+          11.272476
+        ],
+        [
+          122.960671,
+          11.278211
+        ],
+        [
+          122.951692,
+          11.29216
+        ],
+        [
+          122.940421,
+          11.309738
+        ],
+        [
+          122.918219,
+          11.344222
+        ],
+        [
+          122.895529,
+          11.37941
+        ],
+        [
+          122.87331,
+          11.41391
+        ],
+        [
+          122.853904,
+          11.444092
+        ],
+        [
+          122.831552,
+          11.478745
+        ],
+        [
+          122.809201,
+          11.513397
+        ],
+        [
+          122.786802,
+          11.548187
+        ],
+        [
+          122.764218,
+          11.583174
+        ],
+        [
+          122.741483,
+          11.618179
+        ],
+        [
+          122.717853,
+          11.653107
+        ],
+        [
+          122.694445,
+          11.687638
+        ],
+        [
+          122.670979,
+          11.722412
+        ],
+        [
+          122.647705,
+          11.757
+        ],
+        [
+          122.624239,
+          11.791728
+        ],
+        [
+          122.600934,
+          11.82637
+        ],
+        [
+          122.578346,
+          11.859833
+        ],
+        [
+          122.555426,
+          11.893799
+        ],
+        [
+          122.532885,
+          11.927261
+        ],
+        [
+          122.520715,
+          11.945343
+        ],
+        [
+          122.489849,
+          11.990972
+        ],
+        [
+          122.479393,
+          12.006474
+        ],
+        [
+          121.055082,
+          14.026703
+        ],
+        [
+          121.030739,
+          14.059381
+        ],
+        [
+          121.023319,
+          14.06939
+        ],
+        [
+          121.016524,
+          14.078467
+        ],
+        [
+          121.009716,
+          14.087631
+        ],
+        [
+          121.006165,
+          14.092433
+        ],
+        [
+          121.003081,
+          14.09653
+        ],
+        [
+          120.99884,
+          14.102256
+        ],
+        [
+          120.989306,
+          14.11496
+        ],
+        [
+          120.975526,
+          14.133408
+        ],
+        [
+          120.963038,
+          14.150111
+        ],
+        [
+          120.952004,
+          14.164775
+        ],
+        [
+          120.946592,
+          14.172363
+        ],
+        [
+          120.943427,
+          14.177298
+        ],
+        [
+          120.938589,
+          14.185272
+        ],
+        [
+          120.936922,
+          14.188144
+        ],
+        [
+          120.931188,
+          14.198014
+        ],
+        [
+          120.923341,
+          14.211411
+        ],
+        [
+          120.915669,
+          14.224274
+        ],
+        [
+          120.907962,
+          14.23735
+        ],
+        [
+          120.904115,
+          14.243317
+        ],
+        [
+          120.901368,
+          14.246796
+        ],
+        [
+          120.898574,
+          14.249588
+        ],
+        [
+          120.895819,
+          14.252014
+        ],
+        [
+          120.892939,
+          14.25412
+        ],
+        [
+          120.890134,
+          14.255831
+        ],
+        [
+          120.886857,
+          14.257461
+        ],
+        [
+          120.883658,
+          14.258698
+        ],
+        [
+          120.881123,
+          14.259509
+        ],
+        [
+          120.87717,
+          14.260391
+        ],
+        [
+          120.873124,
+          14.260813
+        ],
+        [
+          120.870618,
+          14.260906
+        ],
+        [
+          120.866956,
+          14.260766
+        ],
+        [
+          120.863439,
+          14.2603
+        ],
+        [
+          120.860114,
+          14.259509
+        ],
+        [
+          120.856807,
+          14.258377
+        ],
+        [
+          120.854139,
+          14.257275
+        ],
+        [
+          120.850935,
+          14.25563
+        ],
+        [
+          120.847336,
+          14.253616
+        ],
+        [
+          120.842222,
+          14.250641
+        ],
+        [
+          120.828063,
+          14.242035
+        ],
+        [
+          120.826095,
+          14.240842
+        ],
+        [
+          120.798798,
+          14.224594
+        ],
+        [
+          120.783643,
+          14.215797
+        ],
+        [
+          120.770344,
+          14.208348
+        ],
+        [
+          120.753763,
+          14.199142
+        ],
+        [
+          120.735295,
+          14.18898
+        ],
+        [
+          120.729627,
+          14.185863
+        ],
+        [
+          120.65783,
+          14.30513
+        ],
+        [
+          120.748853,
+          14.358433
+        ],
+        [
+          120.755941,
+          14.362335
+        ],
+        [
+          120.76205,
+          14.365723
+        ],
+        [
+          120.77179,
+          14.371188
+        ],
+        [
+          120.776351,
+          14.373734
+        ],
+        [
+          120.782342,
+          14.377147
+        ],
+        [
+          120.787739,
+          14.380172
+        ],
+        [
+          120.788414,
+          14.380545
+        ],
+        [
+          120.836161,
+          14.406967
+        ],
+        [
+          120.839239,
+          14.408661
+        ],
+        [
+          120.844598,
+          14.411595
+        ],
+        [
+          120.848212,
+          14.413644
+        ],
+        [
+          120.85491,
+          14.417414
+        ],
+        [
+          120.860027,
+          14.420242
+        ],
+        [
+          120.864858,
+          14.422943
+        ],
+        [
+          120.868551,
+          14.424957
+        ],
+        [
+          120.869972,
+          14.425781
+        ],
+        [
+          120.87269,
+          14.427283
+        ],
+        [
+          120.876507,
+          14.429398
+        ],
+        [
+          120.877454,
+          14.429947
+        ],
+        [
+          120.883231,
+          14.433105
+        ],
+        [
+          120.887541,
+          14.43544
+        ],
+        [
+          120.891724,
+          14.437804
+        ],
+        [
+          120.89235,
+          14.43813
+        ],
+        [
+          120.894786,
+          14.439514
+        ],
+        [
+          120.897959,
+          14.441254
+        ],
+        [
+          120.898614,
+          14.441621
+        ],
+        [
+          120.905457,
+          14.445439
+        ],
+        [
+          120.907524,
+          14.446609
+        ],
+        [
+          120.912355,
+          14.449265
+        ],
+        [
+          120.916684,
+          14.451677
+        ],
+        [
+          120.918416,
+          14.452652
+        ],
+        [
+          120.921068,
+          14.454117
+        ],
+        [
+          120.92396,
+          14.45568
+        ],
+        [
+          120.927319,
+          14.45755
+        ],
+        [
+          120.93016,
+          14.459061
+        ],
+        [
+          120.931284,
+          14.45973
+        ],
+        [
+          120.935038,
+          14.461761
+        ],
+        [
+          120.952775,
+          14.471648
+        ],
+        [
+          120.956292,
+          14.473603
+        ],
+        [
+          120.959757,
+          14.475494
+        ],
+        [
+          120.967134,
+          14.479561
+        ],
+        [
+          120.970743,
+          14.481628
+        ],
+        [
+          120.973206,
+          14.483002
+        ],
+        [
+          120.97894,
+          14.486218
+        ],
+        [
+          120.980072,
+          14.486847
+        ]
+      ],
+      "trackSource": "adsblol"
     },
     {
       "date": "2026-02-15",
@@ -86,7 +863,7 @@
       "airline": "CEB",
       "aircraft": "A21N",
       "registration": "RP-C4125",
-      "icao24": null,
+      "icao24": "75869f",
       "track": null,
       "trackSource": null
     },
@@ -101,7 +878,7 @@
       "airline": "RIT",
       "aircraft": "A320",
       "registration": "RP-C8949",
-      "icao24": null,
+      "icao24": "7585b4",
       "track": null,
       "trackSource": null
     },
@@ -116,7 +893,7 @@
       "airline": "CSN",
       "aircraft": "B738",
       "registration": "B-1582",
-      "icao24": null,
+      "icao24": "780293",
       "track": null,
       "trackSource": null
     },
@@ -146,7 +923,7 @@
       "airline": "OCN",
       "aircraft": "A333",
       "registration": "D-AFYR",
-      "icao24": null,
+      "icao24": "3c5b32",
       "track": null,
       "trackSource": null
     },
@@ -251,7 +1028,7 @@
       "airline": "UAL",
       "aircraft": "B763",
       "registration": "N654UA",
-      "icao24": null,
+      "icao24": "a89d59",
       "track": null,
       "trackSource": null
     },
@@ -281,7 +1058,7 @@
       "airline": "JAT",
       "aircraft": "A20N",
       "registration": "CC-AWN",
-      "icao24": null,
+      "icao24": "e8060d",
       "track": null,
       "trackSource": null
     },
@@ -341,7 +1118,7 @@
       "airline": "UAL",
       "aircraft": "B772",
       "registration": "N229UA",
-      "icao24": null,
+      "icao24": "a20433",
       "track": null,
       "trackSource": null
     },
@@ -356,7 +1133,7 @@
       "airline": "UAL",
       "aircraft": "B772",
       "registration": "N229UA",
-      "icao24": null,
+      "icao24": "a20433",
       "track": null,
       "trackSource": null
     },
@@ -371,7 +1148,7 @@
       "airline": "DLH",
       "aircraft": "A319",
       "registration": "D-AIBN",
-      "icao24": null,
+      "icao24": "3c644e",
       "track": null,
       "trackSource": null
     },
@@ -386,7 +1163,7 @@
       "airline": "DLH",
       "aircraft": "BCS3",
       "registration": "YL-AAP",
-      "icao24": null,
+      "icao24": "502d0c",
       "track": null,
       "trackSource": null
     },
@@ -401,7 +1178,7 @@
       "airline": "SWR",
       "aircraft": "BCS3",
       "registration": "HB-JCT",
-      "icao24": null,
+      "icao24": "4b180b",
       "track": null,
       "trackSource": null
     },
@@ -431,7 +1208,7 @@
       "airline": "DLH",
       "aircraft": "A319",
       "registration": "D-AIBQ",
-      "icao24": null,
+      "icao24": "3c6451",
       "track": null,
       "trackSource": null
     },
@@ -446,7 +1223,7 @@
       "airline": "DLH",
       "aircraft": "A320",
       "registration": "D-AIZZ",
-      "icao24": null,
+      "icao24": "3c675a",
       "track": null,
       "trackSource": null
     },
@@ -461,7 +1238,7 @@
       "airline": "DLH",
       "aircraft": "A20N",
       "registration": "D-AINC",
-      "icao24": null,
+      "icao24": "3c65c3",
       "track": null,
       "trackSource": null
     },
@@ -476,7 +1253,7 @@
       "airline": "DLH",
       "aircraft": "A20N",
       "registration": "D-AINC",
-      "icao24": null,
+      "icao24": "3c65c3",
       "track": null,
       "trackSource": null
     },
@@ -491,7 +1268,7 @@
       "airline": "BAG",
       "aircraft": "A320",
       "registration": "LZ-FBE",
-      "icao24": null,
+      "icao24": "451e90",
       "track": null,
       "trackSource": null
     },
@@ -521,7 +1298,7 @@
       "airline": "RYR",
       "aircraft": "B738",
       "registration": "9H-QAW",
-      "icao24": null,
+      "icao24": "4d227f",
       "track": null,
       "trackSource": null
     },
@@ -536,7 +1313,7 @@
       "airline": "EIN",
       "aircraft": "A320",
       "registration": "EI-DVG",
-      "icao24": null,
+      "icao24": "4ca63a",
       "track": null,
       "trackSource": null
     },
@@ -566,7 +1343,7 @@
       "airline": "KLM",
       "aircraft": "E190",
       "registration": "D-AJHW",
-      "icao24": null,
+      "icao24": "3c6917",
       "track": null,
       "trackSource": null
     },
@@ -581,7 +1358,7 @@
       "airline": "RYR",
       "aircraft": "B738",
       "registration": "EI-EMA",
-      "icao24": null,
+      "icao24": "4ca849",
       "track": null,
       "trackSource": null
     },
@@ -596,7 +1373,7 @@
       "airline": "EZY",
       "aircraft": "A319",
       "registration": "G-EZBH",
-      "icao24": null,
+      "icao24": "400f02",
       "track": null,
       "trackSource": null
     },
@@ -611,7 +1388,7 @@
       "airline": "EZY",
       "aircraft": "A319",
       "registration": "OE-LQG",
-      "icao24": null,
+      "icao24": "440181",
       "track": null,
       "trackSource": null
     },
@@ -656,7 +1433,7 @@
       "airline": "CES",
       "aircraft": "B77W",
       "registration": "B-7868",
-      "icao24": null,
+      "icao24": "781100",
       "track": null,
       "trackSource": null
     },
@@ -671,7 +1448,7 @@
       "airline": "CES",
       "aircraft": "A20N",
       "registration": "B-329M",
-      "icao24": null,
+      "icao24": "781da8",
       "track": null,
       "trackSource": null
     },
@@ -701,7 +1478,7 @@
       "airline": "JJA",
       "aircraft": "B738",
       "registration": "HL8333",
-      "icao24": null,
+      "icao24": "71c333",
       "track": null,
       "trackSource": null
     },
@@ -716,7 +1493,7 @@
       "airline": "JJA",
       "aircraft": "B738",
       "registration": "HL8064",
-      "icao24": null,
+      "icao24": "71c064",
       "track": null,
       "trackSource": null
     },
@@ -761,7 +1538,7 @@
       "airline": "TWA",
       "aircraft": "A332",
       "registration": "HL8212",
-      "icao24": null,
+      "icao24": "71c212",
       "track": null,
       "trackSource": null
     },
@@ -821,7 +1598,7 @@
       "airline": null,
       "aircraft": "P28A",
       "registration": "D-EOCM",
-      "icao24": null,
+      "icao24": "3d29e0",
       "track": null,
       "trackSource": null
     },
@@ -836,7 +1613,7 @@
       "airline": "AFR",
       "aircraft": "BCS3",
       "registration": "F-HZUG",
-      "icao24": null,
+      "icao24": "39e686",
       "track": null,
       "trackSource": null
     },
@@ -851,7 +1628,7 @@
       "airline": "AFR",
       "aircraft": "A321",
       "registration": "F-GTAK",
-      "icao24": null,
+      "icao24": "394c0a",
       "track": null,
       "trackSource": null
     },
@@ -866,7 +1643,7 @@
       "airline": "TAP",
       "aircraft": "A321",
       "registration": "CS-TJE",
-      "icao24": null,
+      "icao24": "495145",
       "track": null,
       "trackSource": null
     },
@@ -881,7 +1658,7 @@
       "airline": "EZY",
       "aircraft": "A20N",
       "registration": "OE-LSP",
-      "icao24": null,
+      "icao24": "440cc1",
       "track": null,
       "trackSource": null
     },
@@ -896,7 +1673,7 @@
       "airline": "RYR",
       "aircraft": "B738",
       "registration": "9H-QDM",
-      "icao24": null,
+      "icao24": "4d227d",
       "track": null,
       "trackSource": null
     },
@@ -911,7 +1688,7 @@
       "airline": "EWG",
       "aircraft": "A320",
       "registration": "D-ABZL",
-      "icao24": null,
+      "icao24": "3c4b4c",
       "track": null,
       "trackSource": null
     },
@@ -926,7 +1703,7 @@
       "airline": "EWG",
       "aircraft": "A320",
       "registration": "9H-EUQ",
-      "icao24": null,
+      "icao24": "4d253b",
       "track": null,
       "trackSource": null
     },
@@ -956,7 +1733,7 @@
       "airline": "ETD",
       "aircraft": "B789",
       "registration": "A6-BLZ",
-      "icao24": null,
+      "icao24": "896537",
       "track": null,
       "trackSource": null
     },
@@ -971,7 +1748,7 @@
       "airline": "AXM",
       "aircraft": "A20N",
       "registration": "9M-AGF",
-      "icao24": null,
+      "icao24": "75043f",
       "track": null,
       "trackSource": null
     },
@@ -986,7 +1763,7 @@
       "airline": "RBA",
       "aircraft": "A20N",
       "registration": "V8-RBB",
-      "icao24": null,
+      "icao24": "895056",
       "track": null,
       "trackSource": null
     },
@@ -1001,7 +1778,7 @@
       "airline": "RBA",
       "aircraft": "A20N",
       "registration": "V8-RBF",
-      "icao24": null,
+      "icao24": "89505e",
       "track": null,
       "trackSource": null
     },
@@ -1016,7 +1793,7 @@
       "airline": "MAS",
       "aircraft": "AT75",
       "registration": "9M-MWF",
-      "icao24": null,
+      "icao24": "750069",
       "track": null,
       "trackSource": null
     },
@@ -1031,7 +1808,7 @@
       "airline": "MAS",
       "aircraft": "AT75",
       "registration": "9M-MWD",
-      "icao24": null,
+      "icao24": "750067",
       "track": null,
       "trackSource": null
     },
@@ -1046,7 +1823,7 @@
       "airline": "FFM",
       "aircraft": "B738",
       "registration": "9M-MLH",
-      "icao24": null,
+      "icao24": "750237",
       "track": null,
       "trackSource": null
     },
@@ -1061,7 +1838,7 @@
       "airline": "MXD",
       "aircraft": "B738",
       "registration": "9M-LCU",
-      "icao24": null,
+      "icao24": "750403",
       "track": null,
       "trackSource": null
     },
@@ -1091,7 +1868,7 @@
       "airline": "AXM",
       "aircraft": "A20N",
       "registration": "9M-NEO",
-      "icao24": null,
+      "icao24": "750410",
       "track": null,
       "trackSource": null
     },
@@ -1106,7 +1883,7 @@
       "airline": "TGW",
       "aircraft": "A320",
       "registration": "9V-TRM",
-      "icao24": null,
+      "icao24": "76d24d",
       "track": null,
       "trackSource": null
     },
@@ -1121,7 +1898,7 @@
       "airline": "AXM",
       "aircraft": "A320",
       "registration": "9M-AJS",
-      "icao24": null,
+      "icao24": "750111",
       "track": null,
       "trackSource": null
     },
@@ -1136,7 +1913,7 @@
       "airline": "ETD",
       "aircraft": "B78X",
       "registration": "A6-BMB",
-      "icao24": null,
+      "icao24": "8964fd",
       "track": null,
       "trackSource": null
     },
@@ -1166,7 +1943,7 @@
       "airline": "DLH",
       "aircraft": "A320",
       "registration": "D-AIZT",
-      "icao24": null,
+      "icao24": "3c6754",
       "track": null,
       "trackSource": null
     },
@@ -1196,7 +1973,7 @@
       "airline": "EZY",
       "aircraft": "A320",
       "registration": "OE-INA",
-      "icao24": null,
+      "icao24": "440159",
       "track": null,
       "trackSource": null
     },
@@ -1226,7 +2003,7 @@
       "airline": "RYR",
       "aircraft": "B738",
       "registration": "SP-RSE",
-      "icao24": null,
+      "icao24": "48c224",
       "track": null,
       "trackSource": null
     },
@@ -1241,7 +2018,7 @@
       "airline": "RYR",
       "aircraft": "B738",
       "registration": "SP-RSM",
-      "icao24": null,
+      "icao24": "48c22c",
       "track": null,
       "trackSource": null
     },
@@ -1256,7 +2033,7 @@
       "airline": "EWG",
       "aircraft": "A320",
       "registration": "D-ABZI",
-      "icao24": null,
+      "icao24": "3c4b49",
       "track": null,
       "trackSource": null
     },
@@ -1271,7 +2048,7 @@
       "airline": "BES",
       "aircraft": "A321",
       "registration": "HA-LTE",
-      "icao24": null,
+      "icao24": "471efe",
       "track": null,
       "trackSource": null
     },
@@ -1286,7 +2063,7 @@
       "airline": "WMT",
       "aircraft": "A321",
       "registration": "HA-LTD",
-      "icao24": null,
+      "icao24": "471efd",
       "track": null,
       "trackSource": null
     },
@@ -1316,7 +2093,7 @@
       "airline": "EWG",
       "aircraft": "A321",
       "registration": "D-AIDV",
-      "icao24": null,
+      "icao24": "3c6496",
       "track": null,
       "trackSource": null
     },
@@ -1346,7 +2123,7 @@
       "airline": "EWG",
       "aircraft": "A320",
       "registration": "D-AEWP",
-      "icao24": null,
+      "icao24": "3c56f0",
       "track": null,
       "trackSource": null
     },
@@ -1361,7 +2138,7 @@
       "airline": "DLH",
       "aircraft": "A319",
       "registration": "D-AILT",
-      "icao24": null,
+      "icao24": "3c6594",
       "track": null,
       "trackSource": null
     },
@@ -1391,7 +2168,7 @@
       "airline": "DLH",
       "aircraft": "A321",
       "registration": "D-AIRT",
-      "icao24": null,
+      "icao24": "3c6654",
       "track": null,
       "trackSource": null
     },
@@ -1406,7 +2183,7 @@
       "airline": "DLH",
       "aircraft": "A321",
       "registration": "D-AISF",
-      "icao24": null,
+      "icao24": "3c6666",
       "track": null,
       "trackSource": null
     },
@@ -1421,7 +2198,7 @@
       "airline": "DLH",
       "aircraft": "A319",
       "registration": "D-AILA",
-      "icao24": null,
+      "icao24": "3c6581",
       "track": null,
       "trackSource": null
     },
@@ -1436,7 +2213,7 @@
       "airline": "DLH",
       "aircraft": "A321",
       "registration": "D-AISD",
-      "icao24": null,
+      "icao24": "3c6664",
       "track": null,
       "trackSource": null
     },
@@ -1496,7 +2273,7 @@
       "airline": "PGT",
       "aircraft": "A21N",
       "registration": "TC-RDT",
-      "icao24": null,
+      "icao24": "4bc894",
       "track": null,
       "trackSource": null
     },
@@ -1541,7 +2318,7 @@
       "airline": "PGT",
       "aircraft": "B738",
       "registration": "TC-CRG",
-      "icao24": null,
+      "icao24": "4b8e47",
       "track": null,
       "trackSource": null
     },
@@ -1556,7 +2333,7 @@
       "airline": "EWG",
       "aircraft": "A320",
       "registration": "D-AEWP",
-      "icao24": null,
+      "icao24": "3c56f0",
       "track": null,
       "trackSource": null
     },
@@ -1571,7 +2348,7 @@
       "airline": "DLH",
       "aircraft": "A20N",
       "registration": "D-AIJN",
-      "icao24": null,
+      "icao24": "3c654e",
       "track": null,
       "trackSource": null
     },
@@ -1586,7 +2363,7 @@
       "airline": "DLH",
       "aircraft": "A359",
       "registration": "D-AIXC",
-      "icao24": null,
+      "icao24": "3c6703",
       "track": null,
       "trackSource": null
     },
@@ -1601,7 +2378,7 @@
       "airline": "DLH",
       "aircraft": "A321",
       "registration": "D-AIDK",
-      "icao24": null,
+      "icao24": "3c648b",
       "track": null,
       "trackSource": null
     },
@@ -1616,7 +2393,7 @@
       "airline": "EWG",
       "aircraft": "A320",
       "registration": "9H-AMK",
-      "icao24": null,
+      "icao24": "4d2351",
       "track": null,
       "trackSource": null
     },
@@ -1631,7 +2408,7 @@
       "airline": "EWG",
       "aircraft": "A320",
       "registration": "D-ABZK",
-      "icao24": null,
+      "icao24": "3c4b4b",
       "track": null,
       "trackSource": null
     },
@@ -1661,7 +2438,7 @@
       "airline": "AFR",
       "aircraft": "A318",
       "registration": "F-GUGP",
-      "icao24": null,
+      "icao24": "3950cf",
       "track": null,
       "trackSource": null
     },
@@ -1676,7 +2453,7 @@
       "airline": "AFR",
       "aircraft": "A320",
       "registration": "F-HBNA",
-      "icao24": null,
+      "icao24": "3985a0",
       "track": null,
       "trackSource": null
     },
@@ -1691,7 +2468,7 @@
       "airline": "CCA",
       "aircraft": "B77W",
       "registration": "B-2085",
-      "icao24": null,
+      "icao24": "78076b",
       "track": null,
       "trackSource": null
     },
@@ -1706,7 +2483,7 @@
       "airline": "CCA",
       "aircraft": "A333",
       "registration": "B-5906",
-      "icao24": null,
+      "icao24": "78090f",
       "track": null,
       "trackSource": null
     },
@@ -1721,7 +2498,7 @@
       "airline": "SJV",
       "aircraft": "A320",
       "registration": "PK-STS",
-      "icao24": null,
+      "icao24": "8a09c4",
       "track": null,
       "trackSource": null
     },
@@ -1751,7 +2528,7 @@
       "airline": "TGW",
       "aircraft": "B789",
       "registration": "9V-OJC",
-      "icao24": null,
+      "icao24": "76bd43",
       "track": null,
       "trackSource": null
     },
@@ -1766,7 +2543,7 @@
       "airline": "CCA",
       "aircraft": "A333",
       "registration": "B-6525",
-      "icao24": null,
+      "icao24": "7806de",
       "track": null,
       "trackSource": null
     },
@@ -1781,7 +2558,7 @@
       "airline": "CCA",
       "aircraft": "B77W",
       "registration": "B-2085",
-      "icao24": null,
+      "icao24": "78076b",
       "track": null,
       "trackSource": null
     },
@@ -1796,7 +2573,7 @@
       "airline": "EWG",
       "aircraft": "A320",
       "registration": "D-AEWG",
-      "icao24": null,
+      "icao24": "3c56e7",
       "track": null,
       "trackSource": null
     },
@@ -1811,7 +2588,7 @@
       "airline": "DLH",
       "aircraft": "A319",
       "registration": "D-AILX",
-      "icao24": null,
+      "icao24": "3c6598",
       "track": null,
       "trackSource": null
     },
@@ -1826,7 +2603,7 @@
       "airline": "RYR",
       "aircraft": "B38M",
       "registration": "EI-HAW",
-      "icao24": null,
+      "icao24": "4ca95e",
       "track": null,
       "trackSource": null
     },
@@ -1841,7 +2618,7 @@
       "airline": "RYR",
       "aircraft": "B738",
       "registration": "EI-DYA",
-      "icao24": null,
+      "icao24": "4ca643",
       "track": null,
       "trackSource": null
     },
@@ -1856,7 +2633,7 @@
       "airline": "DLH",
       "aircraft": "A320",
       "registration": "D-AIWC",
-      "icao24": null,
+      "icao24": "3c66e3",
       "track": null,
       "trackSource": null
     },
@@ -1871,7 +2648,7 @@
       "airline": "DLH",
       "aircraft": "CRJ9",
       "registration": "D-ACNJ",
-      "icao24": null,
+      "icao24": "3c4dca",
       "track": null,
       "trackSource": null
     },
@@ -1901,7 +2678,7 @@
       "airline": "EZY",
       "aircraft": "A319",
       "registration": "OE-LQP",
-      "icao24": null,
+      "icao24": "4405b6",
       "track": null,
       "trackSource": null
     },
@@ -1916,7 +2693,7 @@
       "airline": "RYR",
       "aircraft": "B738",
       "registration": "9H-QAZ",
-      "icao24": null,
+      "icao24": "4d226c",
       "track": null,
       "trackSource": null
     },
@@ -1946,7 +2723,7 @@
       "airline": "KLM",
       "aircraft": "E75S",
       "registration": "PH-EXJ",
-      "icao24": null,
+      "icao24": "4853f4",
       "track": null,
       "trackSource": null
     },
@@ -1961,7 +2738,7 @@
       "airline": "KLM",
       "aircraft": "B739",
       "registration": "PH-BXP",
-      "icao24": null,
+      "icao24": "48418b",
       "track": null,
       "trackSource": null
     },
@@ -1976,7 +2753,7 @@
       "airline": "BAW",
       "aircraft": "A20N",
       "registration": "G-TTNM",
-      "icao24": null,
+      "icao24": "407930",
       "track": null,
       "trackSource": null
     },
@@ -1991,7 +2768,7 @@
       "airline": "EWG",
       "aircraft": "A319",
       "registration": "D-AGWC",
-      "icao24": null,
+      "icao24": "3c5ee3",
       "track": null,
       "trackSource": null
     },
@@ -2006,7 +2783,7 @@
       "airline": "DLH",
       "aircraft": "A319",
       "registration": "D-AIBP",
-      "icao24": null,
+      "icao24": "3c6450",
       "track": null,
       "trackSource": null
     },
@@ -2021,7 +2798,7 @@
       "airline": "DLH",
       "aircraft": "A388",
       "registration": "D-AIMM",
-      "icao24": null,
+      "icao24": "3c65ad",
       "track": null,
       "trackSource": null
     },
@@ -2036,7 +2813,7 @@
       "airline": "ASA",
       "aircraft": "B738",
       "registration": "N548AS",
-      "icao24": null,
+      "icao24": "a6f5b5",
       "track": null,
       "trackSource": null
     },
@@ -2051,7 +2828,7 @@
       "airline": "DLH",
       "aircraft": "A343",
       "registration": "D-AIGN",
-      "icao24": null,
+      "icao24": "3c64ee",
       "track": null,
       "trackSource": null
     },
@@ -2096,7 +2873,7 @@
       "airline": "EZY",
       "aircraft": "A20N",
       "registration": "G-UZLB",
-      "icao24": null,
+      "icao24": "407794",
       "track": null,
       "trackSource": null
     },
