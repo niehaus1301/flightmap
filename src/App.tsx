@@ -56,7 +56,7 @@ function App() {
         source: 'flightmap',
         filter: ['==', ['get', 'featureType'], 'route'],
         paint: {
-          'line-color': 'yellow',
+          'line-color': '#e63946',
           'line-width': 1.5,
           'line-opacity': 0.8,
         },
