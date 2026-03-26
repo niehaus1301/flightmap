@@ -35,3 +35,23 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+.satellite-toggle {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: none;
+  background: rgb(35 55 75 / 90%);
+  color: #fff;
+  font-family: monospace;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.satellite-toggle:hover {
+  background: rgb(35 55 75);
+}
