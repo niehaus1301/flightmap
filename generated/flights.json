@@ -4645,6 +4645,18 @@
       "registration": null
     },
     {
+      "date": "2018-07-29",
+      "flightNumber": "TG466",
+      "from": "MEL",
+      "to": "BKK",
+      "distance": 4,
+      "departureTime": "14:30",
+      "arrivalTime": "20:00",
+      "airline": "THA",
+      "aircraft": "A359",
+      "registration": null
+    },
+    {
       "date": "2018-07-21",
       "flightNumber": "JQ500",
       "from": "MEL",
