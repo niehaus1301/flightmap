@@ -17,11 +17,71 @@ interface SpecialFlightInfo {
   date: string
 }
 
+const aircraftFamilyLegendItems = [
+  { label: 'A320 family', color: '#ff6b6b', codes: ['A318', 'A319', 'A320', 'A321', 'A20N', 'A21N', 'BCS3'] },
+  { label: 'A220 family', color: '#f06595', codes: ['A220', 'BCS1', 'BCS2'] },
+  { label: 'A330 family', color: '#cc5de8', codes: ['A330', 'A332', 'A333', 'A339'] },
+  { label: 'A340 family', color: '#845ef7', codes: ['A340', 'A343', 'A346'] },
+  { label: 'A350 family', color: '#5c7cfa', codes: ['A350', 'A359', 'A35K'] },
+  { label: 'A380 family', color: '#339af0', codes: ['A380', 'A388'] },
+  { label: '737 family', color: '#22b8cf', codes: ['B737', 'B738', 'B739', 'B38M'] },
+  { label: '757 family', color: '#20c997', codes: ['B757', 'B752', 'B753'] },
+  { label: '767 family', color: '#51cf66', codes: ['B767', 'B763'] },
+  { label: '777 family', color: '#94d82d', codes: ['B777', 'B772', 'B77W'] },
+  { label: '787 family', color: '#fcc419', codes: ['B787', 'B788', 'B789', 'B78X'] },
+  { label: 'Embraer', color: '#ff922b', codes: ['E75S', 'E190', 'E195', 'E295'] },
+  { label: 'CRJ', color: '#ff8787', codes: ['CRJ9'] },
+  { label: 'ATR', color: '#ffa94d', codes: ['AT72', 'AT75'] },
+  { label: 'Piper', color: '#d9480f', codes: ['P28A'] },
+] as const
+
+const nullAircraftColor = '#94a3b8'
+const otherAircraftColor = '#adb5bd'
+
+const aircraftFamilyColorExpression: mapboxgl.Expression = [
+  'case',
+  ['==', ['get', 'aircraft'], null],
+  nullAircraftColor,
+  ['match', ['get', 'aircraft'],
+    ...aircraftFamilyLegendItems.flatMap((item) => [item.codes, item.color] as const),
+    otherAircraftColor,
+  ],
+]
+
+function applyRouteFocusStyle(map: mapboxgl.Map | null, selectedFlightId: string | null) {
+  if (!map) return
+  if (!map.getLayer('routes') || !map.getLayer('special-routes')) return
+
+  if (!selectedFlightId) {
+    map.setPaintProperty('routes', 'line-opacity', 1)
+    map.setPaintProperty('routes', 'line-width', 1.5)
+    map.setPaintProperty('special-routes', 'line-opacity', 1)
+    map.setPaintProperty('special-routes', 'line-width', 2.5)
+    return
+  }
+
+  map.setPaintProperty('routes', 'line-opacity', 0.4)
+  map.setPaintProperty('routes', 'line-width', 1.2)
+  map.setPaintProperty('special-routes', 'line-opacity', [
+    'case',
+    ['==', ['get', 'flightId'], selectedFlightId],
+    1,
+    0.14,
+  ])
+  map.setPaintProperty('special-routes', 'line-width', [
+    'case',
+    ['==', ['get', 'flightId'], selectedFlightId],
+    6,
+    1.2,
+  ])
+}
+
 function App() {
 
   const mapRef = useRef<mapboxgl.Map | null>(null)
   const mapContainerRef = useRef<HTMLDivElement | null>(null)
   const [satellite, setSatellite] = useState(false)
+  const [legendOpen, setLegendOpen] = useState(false)
   const [specialFlight, setSpecialFlight] = useState<SpecialFlightInfo | null>(null)
   const [cardVisible, setCardVisible] = useState(false)
 
@@ -72,9 +132,9 @@ function App() {
           ['!=', ['get', 'isSpecial'], true],
         ],
         paint: {
-          'line-color': '#e63946',
+          'line-color': aircraftFamilyColorExpression,
           'line-width': 1.5,
-          'line-opacity': 0.8,
+          'line-opacity': 1,
         },
       });
 
@@ -87,7 +147,7 @@ function App() {
           ['==', ['get', 'isSpecial'], true],
         ],
         paint: {
-          'line-color': 'green',
+          'line-color': aircraftFamilyColorExpression,
           'line-width': 2.5,
           'line-opacity': 1,
         },
@@ -117,6 +177,7 @@ function App() {
       map.on('click', 'special-routes', (e) => {
         const props = e.features?.[0]?.properties;
         if (!props) return;
+        applyRouteFocusStyle(map, props.flightId as string);
         setSpecialFlight({
           title: props.specialTitle,
           description: props.specialDescription,
@@ -236,6 +297,7 @@ function App() {
             map.on('click', 'special-markers', (e) => {
               const props = e.features?.[0]?.properties;
               if (!props) return;
+              applyRouteFocusStyle(map, props.flightId as string);
               setSpecialFlight({
                 title: props.title,
                 description: props.description,
@@ -261,12 +323,11 @@ function App() {
   const toggleSatellite = () => {
     const next = !satellite;
     mapRef.current?.setLayoutProperty('satellite', 'visibility', next ? 'visible' : 'none');
-    mapRef.current?.setPaintProperty('routes', 'line-color', next ? 'yellow' : '#e63946');
-    mapRef.current?.setPaintProperty('special-routes', 'line-color', next ? '#ffd700' : '#f5a623');
     setSatellite(next);
   };
 
   const closeCard = () => {
+    applyRouteFocusStyle(mapRef.current, null)
     setCardVisible(false);
     setTimeout(() => setSpecialFlight(null), 350);
   };
@@ -274,6 +335,28 @@ function App() {
   return (
     <>
       <div id='map-container' ref={mapContainerRef}/>
+      <button className='legend-toggle' onClick={() => setLegendOpen((current) => !current)}>
+        {legendOpen ? 'Hide legend' : 'Legend'}
+      </button>
+      {legendOpen && (
+        <div className='aircraft-legend'>
+          <div className='aircraft-legend-title'>Aircraft Colors</div>
+          {aircraftFamilyLegendItems.map((item) => (
+            <div key={item.label} className='aircraft-legend-row'>
+              <span className='aircraft-legend-swatch' style={{ backgroundColor: item.color }} />
+              <span>{item.label}</span>
+            </div>
+          ))}
+          <div className='aircraft-legend-row'>
+            <span className='aircraft-legend-swatch' style={{ backgroundColor: nullAircraftColor }} />
+            <span>No aircraft data</span>
+          </div>
+          <div className='aircraft-legend-row'>
+            <span className='aircraft-legend-swatch' style={{ backgroundColor: otherAircraftColor }} />
+            <span>Other</span>
+          </div>
+        </div>
+      )}
       <button className='satellite-toggle' onClick={toggleSatellite}>
         {satellite ? 'Map' : 'Satellite'}
       </button>
