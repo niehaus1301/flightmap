@@ -90,6 +90,8 @@ function App() {
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current!,
       style: import.meta.env.VITE_MAPBOX_STYLE,
+      zoom: 1.92,
+      center: [27.218754, 36.988069],
     });
 
     const handleResize = () => mapRef.current?.resize();
