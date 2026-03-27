@@ -84,6 +84,7 @@ function App() {
   const [legendOpen, setLegendOpen] = useState(false)
   const [specialFlight, setSpecialFlight] = useState<SpecialFlightInfo | null>(null)
   const [cardVisible, setCardVisible] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
@@ -313,7 +314,9 @@ function App() {
             map.on('mouseenter', 'special-markers', () => { map.getCanvas().style.cursor = 'pointer'; });
             map.on('mouseleave', 'special-markers', () => { map.getCanvas().style.cursor = ''; });
           }
-        });
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
     });
 
     return () => {
@@ -368,6 +371,12 @@ function App() {
           onClose={closeCard}
           visible={cardVisible}
         />
+      )}
+      {loading && (
+        <div className='loading-indicator'>
+          <div className='loading-spinner' />
+          <span>Loading…</span>
+        </div>
       )}
     </>
   )
