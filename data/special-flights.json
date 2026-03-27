@@ -1,0 +1,62 @@
+[
+    {
+        "flightId": "2024-04-22_AF6128_ORY_TLS",
+        "title": "First & Last A318 Flight",
+        "description": "I booked a trip specifically to fly the A318 between ORY and TLS (including an airport transfer from CDG to ORY). Days before departure, the leg was swapped to an A320. After multiple attempts to be rebooked (via phone, at the check-in desk in BER, in CDG, and in ORY), I finally found someone at the ORY transfer desk who understood me and put me on a standby ticket, as the later A318 flight was fully booked. After a 7-hour layover, it worked out!",
+        "image": "special-flights/2024-04-22_AF6128_ORY_TLS.jpg"
+    },
+    {
+        "flightId": "2025-02-20_DEOCM_XFW_XFW",
+        "title": "Hamburg Sightseeing from Finkenwerder",
+        "description": "A sightseeing hop from the Airbus factory at Finkenwerder with my colleague Max (a private pilot). We had to wait before takeoff for an A321 to complete some ground tests, then followed the Elbe westwards, headed to Hamburg to circle over the city center, and held short on final approach due to another arriving charter and a reported drone.",
+        "image": "special-flights/2025-02-20_DEOCM_XFW_XFW.jpg"
+    },
+    {
+        "flightId": "2021-05-01_PK451_ISB_KDU",
+        "title": "First flight booked completely offline (cash, paper ticket)",
+        "description": "The PIA website didn't accept foreign cards and no OTA could book the route, so I walked to the PIA ticket office and bought a paper ticket in cash — no email confirmation. The flight was operated on an A320. The crew even launched a pre-flight prayer in the cabin.",
+        "image": "special-flights/2021-05-01_PK451_ISB_KDU.jpg"
+    },
+    {
+        "flightId": "2024-01-02_LH453_LAX_MUC",
+        "title": "First A380: LAX → MUC",
+        "description": "With an award ticket on an A380 — spent a lot of time with Miles & More support to find a connecting feeder due to low capacities during the Christmas period. Not the comfiest connection, but it worked.",
+        "image": "special-flights/2024-01-02_LH453_LAX_MUC.jpg"
+    },
+    {
+        "flightId": "2024-04-26_HR7346_TLS_XFW",
+        "title": "Airbus Charter: TLS → Finkenwerder",
+        "description": "Airbus operates its own A320-family employee shuttle between Finkenwerder and Toulouse. I took this charter a few times — very convenient to travel directly between offices. Since we are all Airbus employees, no one immediately stood up upon landing.",
+        "image": "special-flights/2024-04-26_HR7346_TLS_XFW.jpg"
+    },
+    {
+        "flightId": "2021-01-16_TC137_ZNZ_DAR",
+        "title": "Shortest flight ever (13 minutes) — First A220",
+        "description": "To take my shortest flight ever and first time flying on an A220, I flew from Zanzibar (ZNZ) to Dar es Salaam (DAR). I accepted 2.5 hours of queuing and processes at the Zanzibar airport to hop on a 13-minute domestic flight. The ferry was not an option for me.",
+        "image": "special-flights/2021-01-16_TC137_ZNZ_DAR.jpg"
+    },
+    {
+        "flightId": "2023-12-25_LH490_FRA_SEA",
+        "title": "First A340 (FRA → SEA)",
+        "description": "My first A340 flight from FRA to Seattle. The aircraft used was the A340-300 (not the -600 with the lower-deck lavatories), but I was still happy to have caught an A340 flight before they retire.",
+        "image": "special-flights/2023-12-25_LH490_FRA_SEA.jpg"
+    },
+    {
+        "flightId": "2021-05-08_EY1_AUH_FRA",
+        "title": "AUH → FRA during lockdown, 787-10 — empty cabin",
+        "description": "During the second COVID lockdown, I flew Etihad from Abu Dhabi to Frankfurt. I had to wear a GPS tracker on my wrist during the layover at the airport hotel. The flight used a 787-10, and there were only seven passengers onboard. Seven cabin crew members is also the minimum crew for a 787-10, so everyone basically had their private FA.",
+        "image": "special-flights/2021-05-08_EY1_AUH_FRA.jpg"
+    },
+    {
+        "flightId": "2024-05-23_PC705_BSZ_SAW",
+        "title": "Cheapest flight ever (Bishkek → Hamburg via SAW)",
+        "description": "Booked Bishkek → Hamburg (via SAW) on Pegasus — one-way, paid €30 total (~€0.63 per 100km). Both legs were operated with a new A321neo.",
+        "image": "special-flights/2024-05-23_PC705_BSZ_SAW.jpg"
+    },
+    {
+        "flightId": "2024-11-27_MH3155_SDK_LDU",
+        "title": "Borneo Hops: Sandakan → Lahad Datu",
+        "description": "Two ATR hops in one day across northern Borneo — purely for fun. We stopped in Lahad Datu for a few hours. The airport felt like a garden shed, and a local fisherman showed us his house on the water. Then we continued to Kota Kinabalu.",
+        "image": "special-flights/2024-11-27_MH3155_SDK_LDU.jpg"
+    }
+]

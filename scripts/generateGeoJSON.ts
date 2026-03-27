@@ -4,6 +4,8 @@ import {
   type FlightWithTrack,
   type FlightHistory,
   type Airport,
+  type SpecialFlight,
+  flightKey,
 } from "./types.js";
 
 // ── Paths ──────────────────────────────────────────────────────────────────────
@@ -12,6 +14,7 @@ const HISTORY_PATH = path.join(ROOT, "data/flight-history.json");
 const AIRPORTS_CSV_PATH = path.join(ROOT, "data/airports.csv");
 const RUNWAYS_CSV_PATH = path.join(ROOT, "data/runways.csv");
 const GEOJSON_PATH = path.join(ROOT, "public/flightmap.geojson");
+const SPECIAL_FLIGHTS_PATH = path.join(ROOT, "data/special-flights.json");
 
 // ── CSV Parsing ────────────────────────────────────────────────────────────────
 function parseCSVLine(line: string): string[] {
@@ -339,7 +342,8 @@ function airportFeature(airport: Airport, flightCount: number) {
 
 function routeFeature(
   flight: FlightWithTrack,
-  coordinates: [number, number][]
+  coordinates: [number, number][],
+  special: SpecialFlight | undefined
 ) {
   return {
     type: "Feature" as const,
@@ -349,6 +353,7 @@ function routeFeature(
     },
     properties: {
       featureType: "route",
+      flightId: flightKey(flight),
       date: flight.date,
       flightNumber: flight.flightNumber,
       from: flight.from,
@@ -360,6 +365,38 @@ function routeFeature(
       aircraft: flight.aircraft,
       registration: flight.registration,
       trackSource: flight.trackSource,
+      isSpecial: !!special,
+      ...(special ? {
+        specialTitle: special.title,
+        specialDescription: special.description,
+        specialImage: special.image,
+      } : {}),
+    },
+  };
+}
+
+function specialMarkerFeature(
+  coordinates: [number, number][],
+  special: SpecialFlight,
+  flight: FlightWithTrack
+) {
+  // Pick the midpoint of the route coordinates
+  const mid = coordinates[Math.floor(coordinates.length / 2)];
+  return {
+    type: "Feature" as const,
+    geometry: {
+      type: "Point" as const,
+      coordinates: mid,
+    },
+    properties: {
+      featureType: "special-marker",
+      flightId: special.flightId,
+      title: special.title,
+      description: special.description,
+      image: special.image,
+      from: flight.from,
+      to: flight.to,
+      date: flight.date,
     },
   };
 }
@@ -378,6 +415,16 @@ function main() {
     fs.readFileSync(HISTORY_PATH, "utf-8")
   );
   console.log(`Loaded ${history.flights.length} flights from history`);
+
+  // Load special flights
+  const specialFlightsMap = new Map<string, SpecialFlight>();
+  if (fs.existsSync(SPECIAL_FLIGHTS_PATH)) {
+    const specials: SpecialFlight[] = JSON.parse(
+      fs.readFileSync(SPECIAL_FLIGHTS_PATH, "utf-8")
+    );
+    for (const s of specials) specialFlightsMap.set(s.flightId, s);
+    console.log(`Loaded ${specials.length} special flights`);
+  }
 
   // Count flights per airport and collect used airports
   // Only count an airport if both endpoints of the flight are known,
@@ -411,6 +458,7 @@ function main() {
   let trackedCount = 0;
   let greatCircleCount = 0;
   let skippedCount = 0;
+  const specialMarkerFeatures: ReturnType<typeof specialMarkerFeature>[] = [];
 
   const routeFeatures = history.flights
     .map((flight) => {
@@ -442,13 +490,19 @@ function main() {
         greatCircleCount++;
       }
 
-      return routeFeature(flight, coordinates);
+      const fKey = flightKey(flight);
+      const special = specialFlightsMap.get(fKey);
+      if (special) {
+        specialMarkerFeatures.push(specialMarkerFeature(coordinates, special, flight));
+      }
+
+      return routeFeature(flight, coordinates, special);
     })
     .filter((f) => f !== null);
 
   const geojson = {
     type: "FeatureCollection",
-    features: [...airportFeatures, ...routeFeatures],
+    features: [...airportFeatures, ...routeFeatures, ...specialMarkerFeatures],
   };
 
   fs.mkdirSync(path.dirname(GEOJSON_PATH), { recursive: true });
@@ -458,6 +512,7 @@ function main() {
   console.log(`\n=== Done ===`);
   console.log(`Airports: ${airportFeatures.length}`);
   console.log(`Routes: ${routeFeatures.length} (Tracked: ${trackedCount}, Generated: ${greatCircleCount}, Skipped: ${skippedCount})`);
+  console.log(`Special flights: ${specialMarkerFeatures.length}`);
   console.log(`Written ${GEOJSON_PATH} (${sizeKB} KB)`);
 }
 

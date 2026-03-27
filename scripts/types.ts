@@ -32,6 +32,13 @@ export interface FlightsFile {
   flights: Flight[];
 }
 
+export interface SpecialFlight {
+  flightId: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
 export function flightKey(f: Pick<Flight, "date" | "flightNumber" | "from" | "to">): string {
   return `${f.date}_${f.flightNumber}_${f.from}_${f.to}`;
 }
