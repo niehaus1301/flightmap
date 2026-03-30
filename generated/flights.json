@@ -1,6 +1,30 @@
 {
   "flights": [
     {
+      "date": "2026-05-14",
+      "flightNumber": "U28649",
+      "from": "LGW",
+      "to": "DUS",
+      "distance": 301,
+      "departureTime": "13:50",
+      "arrivalTime": "16:15",
+      "airline": "EZY",
+      "aircraft": "A19N",
+      "registration": null
+    },
+    {
+      "date": "2026-05-14",
+      "flightNumber": "CA851",
+      "from": "PEK",
+      "to": "LGW",
+      "distance": 5,
+      "departureTime": "02:50",
+      "arrivalTime": "06:35",
+      "airline": "CCA",
+      "aircraft": "A359",
+      "registration": null
+    },
+    {
       "date": "2026-05-13",
       "flightNumber": "CA110",
       "from": "HKG",
