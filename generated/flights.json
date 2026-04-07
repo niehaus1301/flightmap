@@ -1,6 +1,18 @@
 {
   "flights": [
     {
+      "date": "2026-05-30",
+      "flightNumber": "EW9462",
+      "from": "DUS",
+      "to": "LHR",
+      "distance": 312,
+      "departureTime": "07:00",
+      "arrivalTime": "07:25",
+      "airline": "EWG",
+      "aircraft": null,
+      "registration": null
+    },
+    {
       "date": "2026-05-14",
       "flightNumber": "U28649",
       "from": "LGW",
