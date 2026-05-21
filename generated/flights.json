@@ -1,6 +1,42 @@
 {
   "flights": [
     {
+      "date": "2026-06-08",
+      "flightNumber": "LX1026",
+      "from": "ZRH",
+      "to": "DUS",
+      "distance": 276,
+      "departureTime": "17:25",
+      "arrivalTime": "18:40",
+      "airline": "SWR",
+      "aircraft": "A359",
+      "registration": null
+    },
+    {
+      "date": "2026-06-08",
+      "flightNumber": "LX8269",
+      "from": "FAO",
+      "to": "ZRH",
+      "distance": 1,
+      "departureTime": "09:10",
+      "arrivalTime": "12:55",
+      "airline": "EDW",
+      "aircraft": "A343",
+      "registration": null
+    },
+    {
+      "date": "2026-06-04",
+      "flightNumber": "W95735",
+      "from": "LGW",
+      "to": "FAO",
+      "distance": 1,
+      "departureTime": "13:55",
+      "arrivalTime": "16:55",
+      "airline": "WUK",
+      "aircraft": "A21N",
+      "registration": null
+    },
+    {
       "date": "2026-05-30",
       "flightNumber": "EW9462",
       "from": "DUS",
@@ -21,8 +57,8 @@
       "departureTime": "13:50",
       "arrivalTime": "16:15",
       "airline": "EZY",
-      "aircraft": "A19N",
-      "registration": null
+      "aircraft": "A319",
+      "registration": "G-EZDX"
     },
     {
       "date": "2026-05-14",
@@ -34,7 +70,7 @@
       "arrivalTime": "06:35",
       "airline": "CCA",
       "aircraft": "A359",
-      "registration": null
+      "registration": "B-32F1"
     },
     {
       "date": "2026-05-13",
@@ -45,8 +81,8 @@
       "departureTime": "17:45",
       "arrivalTime": "21:15",
       "airline": "CCA",
-      "aircraft": "A333",
-      "registration": null
+      "aircraft": "A21N",
+      "registration": "B-32NE"
     },
     {
       "date": "2026-05-13",
@@ -57,8 +93,8 @@
       "departureTime": "11:50",
       "arrivalTime": "14:50",
       "airline": "HKE",
-      "aircraft": "A21N",
-      "registration": null
+      "aircraft": "A321",
+      "registration": "B-HTH"
     },
     {
       "date": "2026-03-07",

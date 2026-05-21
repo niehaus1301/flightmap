@@ -196,7 +196,15 @@ const history: FlightHistory = JSON.parse(
   fs.readFileSync(HISTORY_PATH, "utf-8")
 );
 
-const unenriched = history.flights.filter((f) => f.trackSource === null);
+// Skip flights less than 24h old: AeroAPI rejects start bounds in the future
+// (and live-flight data may still be incomplete) — better to enrich on the next run.
+const MIN_AGE_MS = 24 * 60 * 60 * 1000;
+const now = Date.now();
+const unenriched = history.flights.filter((f) => {
+  if (f.trackSource !== null) return false;
+  const age = now - new Date(f.date + "T00:00:00Z").getTime();
+  return age >= MIN_AGE_MS;
+});
 console.log(
   `Found ${unenriched.length} unenriched flights out of ${history.flights.length} total`
 );
