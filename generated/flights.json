@@ -45,8 +45,8 @@
       "departureTime": "07:00",
       "arrivalTime": "07:25",
       "airline": "EWG",
-      "aircraft": null,
-      "registration": null
+      "aircraft": "A20N",
+      "registration": "D-AENF"
     },
     {
       "date": "2026-05-14",
