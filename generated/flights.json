@@ -30,11 +30,11 @@
       "from": "LGW",
       "to": "FAO",
       "distance": 1,
-      "departureTime": "13:55",
-      "arrivalTime": "16:55",
+      "departureTime": "13:45",
+      "arrivalTime": "16:45",
       "airline": "WUK",
       "aircraft": "A21N",
-      "registration": null
+      "registration": "G-WUKM"
     },
     {
       "date": "2026-05-30",
