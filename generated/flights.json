@@ -1,6 +1,30 @@
 {
   "flights": [
     {
+      "date": "2026-07-19",
+      "flightNumber": "EW9593",
+      "from": "PMI",
+      "to": "DUS",
+      "distance": 834,
+      "departureTime": "19:40",
+      "arrivalTime": "22:00",
+      "airline": "EWG",
+      "aircraft": "A320",
+      "registration": null
+    },
+    {
+      "date": "2026-07-16",
+      "flightNumber": "EW9592",
+      "from": "DUS",
+      "to": "PMI",
+      "distance": 834,
+      "departureTime": "16:25",
+      "arrivalTime": "18:45",
+      "airline": "EWG",
+      "aircraft": "A321",
+      "registration": null
+    },
+    {
       "date": "2026-06-08",
       "flightNumber": "LX1026",
       "from": "ZRH",
