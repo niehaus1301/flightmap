@@ -1,6 +1,30 @@
 {
   "flights": [
     {
+      "date": "2026-09-09",
+      "flightNumber": "FR5126",
+      "from": "HAM",
+      "to": "DUB",
+      "distance": 667,
+      "departureTime": "09:55",
+      "arrivalTime": "11:00",
+      "airline": "RYR",
+      "aircraft": "B738",
+      "registration": null
+    },
+    {
+      "date": "2026-08-05",
+      "flightNumber": "LH2143",
+      "from": "FMO",
+      "to": "MUC",
+      "distance": 318,
+      "departureTime": "06:05",
+      "arrivalTime": "07:15",
+      "airline": "DLH",
+      "aircraft": null,
+      "registration": null
+    },
+    {
       "date": "2026-08-05",
       "flightNumber": "LH1716",
       "from": "MUC",
