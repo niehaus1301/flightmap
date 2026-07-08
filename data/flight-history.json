@@ -15,6 +15,34 @@
       "trackSource": null
     },
     {
+      "date": "2026-09-07",
+      "flightNumber": "EW7845",
+      "from": "OLB",
+      "to": "HAM",
+      "distance": 881,
+      "departureTime": "10:10",
+      "arrivalTime": "12:30",
+      "airline": "EWG",
+      "aircraft": "A19N",
+      "registration": null,
+      "track": null,
+      "trackSource": null
+    },
+    {
+      "date": "2026-08-31",
+      "flightNumber": "EW9868",
+      "from": "DUS",
+      "to": "CAG",
+      "distance": 840,
+      "departureTime": "07:20",
+      "arrivalTime": "09:35",
+      "airline": "EWG",
+      "aircraft": null,
+      "registration": null,
+      "track": null,
+      "trackSource": null
+    },
+    {
       "date": "2026-08-05",
       "flightNumber": "LH1716",
       "from": "MUC",
