@@ -45,8 +45,8 @@
       "departureTime": "06:05",
       "arrivalTime": "07:15",
       "airline": "DLH",
-      "aircraft": null,
-      "registration": null
+      "aircraft": "A319",
+      "registration": "D-AILL"
     },
     {
       "date": "2026-08-05",
@@ -2236,7 +2236,7 @@
       "date": "2023-05-24",
       "flightNumber": "6E308",
       "from": "DEL",
-      "to": "BLR",
+      "to": "NA0",
       "distance": 1,
       "departureTime": "08:00",
       "arrivalTime": "11:00",
