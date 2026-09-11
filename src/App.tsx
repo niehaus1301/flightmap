@@ -18,20 +18,22 @@ interface SpecialFlightInfo {
 }
 
 const aircraftFamilyLegendItems = [
-  { label: 'A320 family', color: '#ff6b6b', codes: ['A318', 'A319', 'A320', 'A321', 'A20N', 'A21N', 'BCS3'] },
+  { label: 'A320 family', color: '#ff6b6b', codes: ['A318', 'A319', 'A320', 'A321', 'A19N', 'A20N', 'A21N', 'BCS3'] },
   { label: 'A220 family', color: '#f06595', codes: ['A220', 'BCS1', 'BCS2'] },
   { label: 'A330 family', color: '#cc5de8', codes: ['A330', 'A332', 'A333', 'A339'] },
   { label: 'A340 family', color: '#845ef7', codes: ['A340', 'A343', 'A346'] },
   { label: 'A350 family', color: '#5c7cfa', codes: ['A350', 'A359', 'A35K'] },
   { label: 'A380 family', color: '#339af0', codes: ['A380', 'A388'] },
   { label: '737 family', color: '#22b8cf', codes: ['B737', 'B738', 'B739', 'B38M'] },
+  { label: '747 family', color: '#0b7285', codes: ['B747', 'B744', 'B748'] },
   { label: '757 family', color: '#20c997', codes: ['B757', 'B752', 'B753'] },
   { label: '767 family', color: '#51cf66', codes: ['B767', 'B763'] },
   { label: '777 family', color: '#94d82d', codes: ['B777', 'B772', 'B77W'] },
   { label: '787 family', color: '#fcc419', codes: ['B787', 'B788', 'B789', 'B78X'] },
   { label: 'Embraer', color: '#ff922b', codes: ['E75S', 'E190', 'E195', 'E295'] },
-  { label: 'CRJ', color: '#ff8787', codes: ['CRJ9'] },
+  { label: 'CRJ', color: '#ff8787', codes: ['CRJ2', 'CRJ7', 'CRJ9', 'CRJX'] },
   { label: 'ATR', color: '#ffa94d', codes: ['AT72', 'AT75'] },
+  { label: 'Dash 8', color: '#c92a2a', codes: ['DH8A', 'DH8C', 'DH8D'] },
   { label: 'Piper', color: '#d9480f', codes: ['P28A'] },
 ] as const
 

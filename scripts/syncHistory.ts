@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import {
+  type Flight,
   type FlightWithTrack,
   type FlightHistory,
   type FlightsFile,
@@ -26,13 +27,42 @@ if (fs.existsSync(HISTORY_PATH)) {
   console.log("No flight-history.json found, starting fresh");
 }
 
-const sourceKeys = new Set(flightsFile.flights.map((f) => flightKey(f)));
+const sourceByKey = new Map(
+  flightsFile.flights.map((f) => [flightKey(f), f] as const)
+);
 
 const beforePruneCount = history.flights.length;
-history.flights = history.flights.filter((f) => sourceKeys.has(flightKey(f)));
+history.flights = history.flights.filter((f) => sourceByKey.has(flightKey(f)));
 const removedCount = beforePruneCount - history.flights.length;
 if (removedCount > 0) {
   console.log(`Removed ${removedCount} stale flights from history.`);
+}
+
+// FlightRadar24 fills in aircraft type and registration some time after the
+// flight itself appears, so refresh the flights we already know about instead
+// of freezing whatever the export happened to hold on the day we first saw
+// them. Locally enriched fields (the track) always win over the export.
+let updatedCount = 0;
+history.flights = history.flights.map((existing) => {
+  const source = sourceByKey.get(flightKey(existing));
+  if (!source) return existing;
+
+  const merged: FlightWithTrack = { ...existing };
+  for (const [key, value] of Object.entries(source) as [
+    keyof Flight,
+    Flight[keyof Flight]
+  ][]) {
+    // Never let a blank in the export erase something we already have.
+    if (value === null || value === undefined) continue;
+    if (merged[key] === value) continue;
+    (merged[key] as Flight[keyof Flight]) = value;
+    updatedCount++;
+  }
+  return merged;
+});
+
+if (updatedCount > 0) {
+  console.log(`Updated ${updatedCount} fields on existing flights.`);
 }
 
 const existingKeys = new Set(history.flights.map((f) => flightKey(f)));
@@ -54,7 +84,7 @@ if (newFlights.length > 0) {
   console.log(`Added ${newFlights.length} new flights.`);
 }
 
-if (removedCount === 0 && newFlights.length === 0) {
+if (removedCount === 0 && newFlights.length === 0 && updatedCount === 0) {
   console.log("No history changes needed.");
 }
 
