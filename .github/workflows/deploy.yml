@@ -3,6 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # The daily data job pushes with GITHUB_TOKEN, and pushes made with that token
+  # never trigger other workflows. Redeploy once it finishes so new flights go live.
+  workflow_run:
+    workflows: ["Update Flight Data"]
+    types: [completed]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,12 +21,16 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    # Skip when the data job failed; nothing new would be published anyway.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: main
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-node@v4
         with:
