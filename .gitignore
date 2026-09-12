@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .env
+# Local FlightRadar24 CSV track exports (input for importFr24CsvTracks.ts)
+fr24/
