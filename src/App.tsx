@@ -35,6 +35,7 @@ const aircraftFamilyLegendItems = [
   { label: 'ATR', color: '#ffa94d', codes: ['AT72', 'AT75'] },
   { label: 'Dash 8', color: '#c92a2a', codes: ['DH8A', 'DH8C', 'DH8D'] },
   { label: 'Piper', color: '#d9480f', codes: ['P28A'] },
+  { label: 'Bristell', color: '#2b8a3e', codes: ['BR23', 'B23E', 'BR8', 'NG5'] },
 ] as const
 
 const nullAircraftColor = '#94a3b8'
