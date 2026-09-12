@@ -33,6 +33,11 @@ const CHROME_UA =
 
 const cycleTLS = await initCycleTLS();
 
+// The endpoint slices the flight list by row offset, so the first page starts
+// at 0. Starting at 1 silently dropped the newest flight on the profile, and it
+// stayed dropped until another flight was added above it.
+const PAGE_SIZE = 50;
+
 async function fetchFlightradarFlights(
   start: number
 ): Promise<FlightradarResponse> {
@@ -75,8 +80,8 @@ async function fetchFlightradarFlights(
         `Body starts with: ${snippet}`
     );
   }
-  return Object.keys(data).length === 50
-    ? { ...data, ...(await fetchFlightradarFlights(start + 50)) }
+  return Object.keys(data).length === PAGE_SIZE
+    ? { ...data, ...(await fetchFlightradarFlights(start + PAGE_SIZE)) }
     : data;
 }
 
@@ -91,7 +96,7 @@ function extractAnchorText(html: string): string | null {
 }
 
 try {
-  const flightsRaw = await fetchFlightradarFlights(1);
+  const flightsRaw = await fetchFlightradarFlights(0);
 
   const flights: Flight[] = Object.keys(flightsRaw).map((key) => {
     const r = flightsRaw[key];
