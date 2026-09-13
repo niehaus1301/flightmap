@@ -31,7 +31,31 @@ const sourceByKey = new Map(
   flightsFile.flights.map((f) => [flightKey(f), f] as const)
 );
 
+// Pruning exists to mirror flights deleted on the profile, which is always a
+// handful at a time. A source that has lost everything, or nearly everything,
+// is a broken fetch rather than a deletion, and history is the only copy of
+// the tracks — so stop instead of mirroring the damage. Set FORCE_PRUNE=1 to
+// go ahead anyway after a genuinely large clear-out.
+const PRUNE_LIMIT = 0.25;
+
 const beforePruneCount = history.flights.length;
+const doomed = history.flights.filter((f) => !sourceByKey.has(flightKey(f)));
+
+if (beforePruneCount > 0 && !process.env.FORCE_PRUNE) {
+  const share = doomed.length / beforePruneCount;
+  if (flightsFile.flights.length === 0 || share > PRUNE_LIMIT) {
+    console.error(
+      `Refusing to sync: flights.json holds ${flightsFile.flights.length} ` +
+        `flights and syncing would drop ${doomed.length} of ` +
+        `${beforePruneCount} from history ` +
+        `(${Math.round(share * 100)}%). This looks like a failed export, not ` +
+        `deleted flights. Re-run the export, or set FORCE_PRUNE=1 if the ` +
+        `flights really are gone.`
+    );
+    process.exit(1);
+  }
+}
+
 history.flights = history.flights.filter((f) => sourceByKey.has(flightKey(f)));
 const removedCount = beforePruneCount - history.flights.length;
 if (removedCount > 0) {

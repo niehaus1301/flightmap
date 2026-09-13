@@ -33,9 +33,10 @@ const CHROME_UA =
 
 const cycleTLS = await initCycleTLS();
 
-// The endpoint slices the flight list by row offset, so the first page starts
-// at 0. Starting at 1 silently dropped the newest flight on the profile, and it
-// stayed dropped until another flight was added above it.
+// The endpoint slices the flight list by row offset, and that offset is
+// 1-based: asking for 0 returns an empty page, which stops the paging below
+// before it has fetched anything. Do not "fix" this to 0 — it wipes the export.
+const FIRST_ROW = 1;
 const PAGE_SIZE = 50;
 
 async function fetchFlightradarFlights(
@@ -96,7 +97,7 @@ function extractAnchorText(html: string): string | null {
 }
 
 try {
-  const flightsRaw = await fetchFlightradarFlights(0);
+  const flightsRaw = await fetchFlightradarFlights(FIRST_ROW);
 
   const flights: Flight[] = Object.keys(flightsRaw).map((key) => {
     const r = flightsRaw[key];
@@ -117,6 +118,15 @@ try {
       registration: r[9].trim() || null,
     };
   });
+
+  // An empty profile is never a real result — it means the fetch was blocked or
+  // the response shape changed. Fail here rather than write an empty file that
+  // the sync step would then treat as "every flight was deleted".
+  if (flights.length === 0) {
+    throw new Error(
+      "MyFlightradar returned no flights. Refusing to overwrite flights.json."
+    );
+  }
 
   console.log(`Fetched ${flights.length} flights`);
   console.log("Writing to " + OUTPUT_FILE_PATH);
