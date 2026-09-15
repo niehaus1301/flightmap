@@ -1,6 +1,20 @@
 {
   "flights": [
     {
+      "date": "2026-10-11",
+      "flightNumber": "EW9774",
+      "from": "DUS",
+      "to": "PRG",
+      "distance": 339,
+      "departureTime": "19:05",
+      "arrivalTime": "20:20",
+      "airline": "EWG",
+      "aircraft": "A321",
+      "registration": null,
+      "track": null,
+      "trackSource": null
+    },
+    {
       "date": "2026-09-23",
       "flightNumber": "TS376",
       "from": "YYZ",
