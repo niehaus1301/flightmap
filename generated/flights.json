@@ -18,11 +18,11 @@
       "from": "DUS",
       "to": "PRG",
       "distance": 339,
-      "departureTime": "19:05",
-      "arrivalTime": "20:20",
+      "departureTime": "18:40",
+      "arrivalTime": "19:55",
       "airline": "EWG",
       "aircraft": "A321",
-      "registration": null
+      "registration": "D-AIDV"
     },
     {
       "date": "2026-09-23",
