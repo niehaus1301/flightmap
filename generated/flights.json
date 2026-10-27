@@ -1,6 +1,54 @@
 {
   "flights": [
     {
+      "date": "2026-12-24",
+      "flightNumber": "U23947",
+      "from": "MXP",
+      "to": "DUS",
+      "distance": 401,
+      "departureTime": "07:00",
+      "arrivalTime": "08:35",
+      "airline": "EZY",
+      "aircraft": "A320",
+      "registration": null
+    },
+    {
+      "date": "2026-12-23",
+      "flightNumber": "W46366",
+      "from": "SPX",
+      "to": "MXP",
+      "distance": 1608,
+      "departureTime": "23:20",
+      "arrivalTime": "01:30",
+      "airline": "WMT",
+      "aircraft": "A21N",
+      "registration": null
+    },
+    {
+      "date": "2026-12-16",
+      "flightNumber": "W46363",
+      "from": "MXP",
+      "to": "SSH",
+      "distance": 1859,
+      "departureTime": "15:55",
+      "arrivalTime": "22:15",
+      "airline": "WMT",
+      "aircraft": "A21N",
+      "registration": null
+    },
+    {
+      "date": "2026-12-16",
+      "flightNumber": "FR4462",
+      "from": "KRK",
+      "to": "MXP",
+      "distance": 598,
+      "departureTime": "07:55",
+      "arrivalTime": "09:50",
+      "airline": "RYR",
+      "aircraft": "B38M",
+      "registration": null
+    },
+    {
       "date": "2026-11-26",
       "flightNumber": "EW9733",
       "from": "KRK",
@@ -21,8 +69,8 @@
       "departureTime": "11:20",
       "arrivalTime": "13:00",
       "airline": "DLH",
-      "aircraft": null,
-      "registration": null
+      "aircraft": "A20N",
+      "registration": "D-AINV"
     },
     {
       "date": "2026-10-11",
