@@ -71,6 +71,34 @@
       "trackSource": null
     },
     {
+      "date": "2026-11-04",
+      "flightNumber": "LH1624",
+      "from": "MUC",
+      "to": "KRK",
+      "distance": 380,
+      "departureTime": "15:30",
+      "arrivalTime": "16:55",
+      "airline": "DLH",
+      "aircraft": null,
+      "registration": null,
+      "track": null,
+      "trackSource": null
+    },
+    {
+      "date": "2026-11-04",
+      "flightNumber": "LH2137",
+      "from": "FMO",
+      "to": "MUC",
+      "distance": 318,
+      "departureTime": "13:00",
+      "arrivalTime": "14:05",
+      "airline": "DLH",
+      "aircraft": "A19N",
+      "registration": null,
+      "track": null,
+      "trackSource": null
+    },
+    {
       "date": "2026-10-23",
       "flightNumber": "LH1363",
       "from": "KRK",
