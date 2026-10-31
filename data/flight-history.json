@@ -57,6 +57,34 @@
       "trackSource": null
     },
     {
+      "date": "2026-12-07",
+      "flightNumber": "FR236",
+      "from": "GDN",
+      "to": "KRK",
+      "distance": 303,
+      "departureTime": "21:30",
+      "arrivalTime": "22:45",
+      "airline": "RYR",
+      "aircraft": "B738",
+      "registration": null,
+      "track": null,
+      "trackSource": null
+    },
+    {
+      "date": "2026-12-07",
+      "flightNumber": "W61662",
+      "from": "DTM",
+      "to": "GDN",
+      "distance": 493,
+      "departureTime": "16:10",
+      "arrivalTime": "17:40",
+      "airline": "WZZ",
+      "aircraft": "A21N",
+      "registration": null,
+      "track": null,
+      "trackSource": null
+    },
+    {
       "date": "2026-11-26",
       "flightNumber": "EW9733",
       "from": "KRK",
