@@ -1,6 +1,30 @@
 {
   "flights": [
     {
+      "date": "2027-01-30",
+      "flightNumber": "SK647",
+      "from": "CPH",
+      "to": "HAM",
+      "distance": 174,
+      "departureTime": "21:25",
+      "arrivalTime": "22:15",
+      "airline": "SAS",
+      "aircraft": "CRJ9",
+      "registration": null
+    },
+    {
+      "date": "2027-01-30",
+      "flightNumber": "SK1736",
+      "from": "KRK",
+      "to": "CPH",
+      "distance": 485,
+      "departureTime": "10:15",
+      "arrivalTime": "11:55",
+      "airline": "SAS",
+      "aircraft": null,
+      "registration": null
+    },
+    {
       "date": "2026-12-24",
       "flightNumber": "U23947",
       "from": "MXP",
