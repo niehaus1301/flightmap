@@ -25,6 +25,30 @@
       "registration": null
     },
     {
+      "date": "2027-01-17",
+      "flightNumber": "W61934",
+      "from": "DTM",
+      "to": "VNO",
+      "distance": 763,
+      "departureTime": "08:05",
+      "arrivalTime": "11:10",
+      "airline": "WZZ",
+      "aircraft": "A21N",
+      "registration": null
+    },
+    {
+      "date": "2027-01-13",
+      "flightNumber": "LH1365",
+      "from": "KRK",
+      "to": "FRA",
+      "distance": 498,
+      "departureTime": "12:50",
+      "arrivalTime": "14:30",
+      "airline": "DLH",
+      "aircraft": null,
+      "registration": null
+    },
+    {
       "date": "2027-01-02",
       "flightNumber": "LH1624",
       "from": "MUC",
